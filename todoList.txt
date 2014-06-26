@@ -1,0 +1,5 @@
+1) Have to split the index.js's code into function
+2) Split those functions into relative module
+3) Write these unit testing for modules.
+
+Think about the archietecture for whiteboard.

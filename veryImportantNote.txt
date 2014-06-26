@@ -1,0 +1,4 @@
+Will the have to check the object is created from constructor style is initiated more or not.
+
+If more than fix it.
+
