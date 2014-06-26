@@ -5,10 +5,10 @@
 //  This fragment is called by /admin/index.php
 ////////////////////////////////////////////////////////////////////////////////
 
-$module->version   = 2014021300;  // use minor version bumps until 2013 then use YYYYMMDDxx
-$module->requires  = 2013111802;  // Requires this Moodle version
-$module->release   = '2.6.1 (20140207)'; // User-friendly version number
-$module->component = 'mod_onetoone';
-$module->maturity  = MATURITY_STABLE;
-$module->cron      = 60;
-$module->dependencies = array('local_getkey' => ANY_VERSION); 
+$plugin->version   = 2014021300;  // use minor version bumps until 2013 then use YYYYMMDDxx
+$plugin->requires  = 2013111800.00;  // Requires this Moodle version
+$plugin->release   = '1.0.0 (20140625)'; // User-friendly version number
+$plugin->component = 'mod_onetoone';
+$plugin->maturity  = MATURITY_STABLE;
+$plugin->cron      = 60;
+$plugin->dependencies = array('local_getkey' => ANY_VERSION); 
