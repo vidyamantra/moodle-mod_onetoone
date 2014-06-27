@@ -687,3 +687,7 @@ The **Venue** displays on the \'Sign-up\' page, the \'View all sessions\' page a
 $string['waitlistedmessage_help'] = 'This message is sent out whenever users sign-up for a wait-listed session.';
 $string['join'] = 'Join';
 $string['learningroom'] = 'Learning Room';
+$string['unvalidkeymsg'] = 'You did not get License key yet or the key is not valid.<br>Please get the valid License key from  <a href=\'{$a}\'>Here</a> and proceed for add session.';
+
+
+

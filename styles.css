@@ -36,3 +36,14 @@ body#page-mod-onetoone-view div#page-content table.sessions {
     width: 100%;
 }
 
+#page-mod-onetoone-view #keyerrormsg{
+    border: 2px solid #9E1333;
+    background: #F2DFE3;
+    padding:20px;
+    margin:0 atuo;
+    width:70%;
+}
+
+#page-mod-onetoone-view #keyerrormsg a{
+    font-weight:bold;
+}

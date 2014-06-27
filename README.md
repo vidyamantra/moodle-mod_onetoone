@@ -43,17 +43,18 @@ Installation
    The file structure for ontoone would be something like. 
 	[site-root]/mod/onetoone
     
-2- Visit the admin notification page to trigger the database installation by
-	[site-root] > Site administration > Notifications
 	
-
-Dependencies
+2- Dependencies
 --------------
 -> To run "onetoone" module you need to add another plugin named "getkey" found at "https://github.com/vidyamantra/moodle-local_getkey".
 Locate this folder 'getkey' into 'local' directory of moodle 
 
 File structure for getkey would be.
 [site-root]/local/getkey
+
+
+3- Visit the admin notification page to trigger the database installation by
+	[site-root] > Site administration > Notifications
 
 
 
