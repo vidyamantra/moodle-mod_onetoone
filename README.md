@@ -11,9 +11,7 @@ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
 FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
 more details.
 
-You should have received a copy of the GNU General Public License along with
-this program.  If not, see <http://www.gnu.org/licenses/>.
------------------------------------------------------------------------------
+You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 Description
@@ -44,9 +42,9 @@ Installation
 	[site-root]/mod/onetoone
     
 	
-2- Dependencies
+ Dependencies
 --------------
--> To run "onetoone" module you need to add another plugin named "getkey" found at "https://github.com/vidyamantra/moodle-local_getkey".
+2- To run "onetoone" module you need to add another plugin named "getkey" found at "https://github.com/vidyamantra/moodle-local_getkey".
 Locate this folder 'getkey' into 'local' directory of moodle 
 
 File structure for getkey would be.
