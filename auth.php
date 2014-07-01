@@ -11,7 +11,11 @@ function my_curl_request($url, $post_data)
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_PROXY, false);
-        curl_setopt($ch, CURLOPT_SSLVERSION, 1);
+    curl_setopt($ch, CURLOPT_SSLVERSION, 1);
+   
+    // added for curl slow connection time 
+    // refrence by http://stackoverflow.com/questions/11143180/curl-slow-connect-time
+    curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
 
     $result = @curl_exec($ch);
     if($result === false){
@@ -36,7 +40,7 @@ function my_curl_request($url, $post_data)
  $post_data = json_encode($post_data);
  $rid = my_curl_request("https://c.vidya.io", $post_data); // REMOVE HTTP
  
- 
+    
  if(empty($rid) or strlen($rid) > 32){
   	echo "Chat server is unavailable!";
   	exit;

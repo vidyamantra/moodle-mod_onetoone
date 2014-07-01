@@ -587,13 +587,12 @@ $string['location_help'] = '**Location** describes the vicinity of the session (
 
 On the \'View all sessions\' page, the listed sessions can be filtered by location.';
 
-$string['modulename_help'] = 'The One-to-one activity module enables a teacher to set up a voluntary booking system for one or many in-person/classroom based sessions.
-
-Each session within a One-to-one activity can have customised settings around location, venue, start time, finish time, cost, capacity, etc. These can be set to run over multiple days or to allow for unscheduled and waitlisted sessions.
-
-An Activity may be set to require manager approval and teachers can configure automated notifications and session reminders for attendees.
+$string['modulename_help'] = 'The One-to-one activity module enables a teacher to set up a voluntary booking system for one in-person/classroom based sessions. 
+        
+Each session within a One-to-one activity can have customised settings eg:- start time, finish time and description.
 
 Students can view and sign-up for sessions with their attendance tracked and recorded within the Grades area.';
+    
 
 $string['mods_help'] = 'One-to-one activities are used to keep track of in-person trainings which require advance booking.
 
