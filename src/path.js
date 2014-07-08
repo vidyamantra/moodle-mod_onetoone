@@ -1,7 +1,9 @@
-(
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */(
     function(window) {
         var vcan = window.vcan;
-
 
         /**
          * This class is used for create the path for each co-ordinate which is drawn by user
@@ -47,8 +49,9 @@
                         throw Error('`path` argument is required');
                     }
                     this.path = path.match && path.match(/[a-zA-Z][^a-zA-Z]*/g);
-                    if (!this.path)
+                    if (!this.path) {
                         return;
+                    }
                     this.initializeFromArray(options);
                     return this;
                 },
@@ -266,7 +269,7 @@
 
                     this.path.forEach(function(item, i) {
                         if (item[3] != " ") {
-                            //splice(3) is represented making time	
+                            //splice(3) is represented making time.
                             var mdTime = item.splice(3);
                         }
 
@@ -299,20 +302,19 @@
                                 : this.utility.getY(item);
 
                         var val = parseInt(x, 10);
-                        if (!isNaN(val))
+                        if (!isNaN(val)){
                             aX.push(val);
-
+                        }
                         val = parseInt(y, 10);
-                        if (!isNaN(val))
+                        if (!isNaN(val)){
                             aY.push(val);
-
+                        }
                         //TODO this can be ticky
                         if (mdTime != undefined) {
                             if (mdTime.length >= 1) {
                                 item.push(mdTime[0]);
                             }
                         }
-
 
                     }, this);
 

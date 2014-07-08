@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         whBoard.system.wbRtc = {};
@@ -12,8 +16,9 @@
                 return 'IE ' + (tem[1] || '');
             }
             M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
-            if ((tem = ua.match(/version\/([\.\d]+)/i)) != null)
+            if ((tem = ua.match(/version\/([\.\d]+)/i)) != null){
                 M[2] = tem[1];
+            }
             // return M.join(' ');
             return M;
         }
@@ -71,12 +76,11 @@
 
         whBoard.system.measureResoultion = function(resolution) {
             if(typeof vcan.main.offset != 'undefined'){
-                var offset = vcan.main.offset; 
-			}else{
+                var offset = vcan.main.offset;
+            }else{
              	var element = document.getElementById('vcanvas');
                 var offset = vcan.utility.getElementOffset(element);
             }
-            
             var offsetLeft = offset.x;
             if (resolution.width < 1024) {
                 var width = 1024 - offsetLeft;
@@ -91,10 +95,8 @@
             var measureRes = whBoard.system.measureResoultion({'width': window.outerWidth, 'height': window.innerHeight});
             var vcanvas = document.getElementById('vcanvas');
             var  rightOffSet = whBoard.utility.getElementRightOffSet(vcanvas);
-            
             console.log('rightOffSet ' + rightOffSet);
             measureRes.width = measureRes.width - rightOffSet; //60 for right edge
-            
             vcanvas.style.width = measureRes.width + 'px';
             if (typeof vcan.main.canvas != 'undefined') {
                 var canvas = vcan.main.canvas;
@@ -102,7 +104,6 @@
 
                 canvas.width = measureRes.width;
                 canvas.height = measureRes.height
-                
                 //this would be added for moodle clean theme.
                 // as first offset of canvas is different afte put the canvas element.
                 var element = document.getElementById('canvas');
@@ -129,22 +130,21 @@
             return resolution;
         }
 
-        window.addEventListener('resize', 
+        window.addEventListener('resize',
             function (){
                 if(window.earlierWidth != window.innerWidth){
-                    whBoard.system.setCanvasDimension();  
+                    whBoard.system.setCanvasDimension();
                 }
             }
         );
 
-        window.addEventListener('resize', 
+        window.addEventListener('resize',
             function (){
                 if(window.earlierWidth != window.innerWidth){
                     whBoard.view.window.resize();
                 }
             }
         );
-
 
         var browser = whBoard.system.mybrowser.detection();
         var browserName = browser[0];

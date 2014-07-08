@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         sumanbog = 0;
@@ -27,7 +31,7 @@
                 videoContainerId: "videos",
                 init: function(vbool) {
                     //attach event handler
-                    //TODO this variable should be localized	    
+                    //TODO this variable should be localized.
                     cthis = this;
 
                     vcan.oneExecuted = true;
@@ -71,13 +75,11 @@
                     }
 
                 },
-                
                 handleUserMedia: function(stream) {
                     whBoard.view.disappearBox('WebRtc');
                     cthis.localStream = stream;
 
                     whBoard.attachMediaStream(vcan.videoChat.localVideo, stream);
-                    					  
                     if (whBoard.clentLen == 1) {
                         cthis.sendMessage('got user media');
                     }
@@ -292,7 +294,6 @@
                         if (!cthis.isInitiator && !cthis.isStarted) {
                             cthis.maybeStart(fromUserId);
                         }
-                        
                         cthis.pc[cthis.cn].setRemoteDescription(new whBoard.RTCSessionDescription(message));
                         cthis.doAnswer();
                     } else if (message.type === 'answer' && cthis.isStarted) {
@@ -309,7 +310,6 @@
                         }
                     }
                 },
-                
                 miniMizeVideo: function() {
                     var toBeHideVideo = document.getElementById(cthis.videoControlId);
                     var parTag = toBeHideVideo.parentNode;
@@ -348,7 +348,7 @@
                     var parElement = document.getElementById(cthis.videoContainerId);
                     parElement.insertBefore(maxButton, parElement.firstChild);
                 },
-                // basically this function would called when 
+                // basically this function would called when
                 // second browser would come or any browser refresh the  after both browser come
                 isVideoFound: function(videoFound, fromUser) {
                     if (fromUser != wbUser.id) {
@@ -358,7 +358,6 @@
                         cthis.sendMessage('got user media');
                     }
                 },
-                
                 settingsForSecondBrowser : function (){
                     if(e.fromUser.userid != wbUser.id){
                         cthis.pc = [];
@@ -366,10 +365,9 @@
                         cthis.isChannelReady = true;
                         cthis.isStarted = false;
                         cthis.sendMessage('got user media');
-                        return;     
+                        return;
                     }
                 },
-                
                 makeInitBrowser : function (){
                     cthis.pc = [];
                     cthis.isStarted = false;
@@ -377,7 +375,6 @@
                     cthis.isChannelReady = true;
                     whBoard.utility.beforeSend({'videoDefault' : true});
                 },
-                
                 /**
                  * 
                  * @returns {}
@@ -390,12 +387,11 @@
                             cthis.isChannelReady = true;
                             cthis.isStarted = false;
                             cthis.sendMessage('got user media');
-                            return true;     
+                            return true;
                         }
                     }
-            
                     if(typeof cthis == 'object' && cthis.hasOwnProperty('pc')){
-                        if(cthis.hasOwnProperty('pc') && typeof cthis.pc[0]  != 'undefined'){
+                        if(cthis.hasOwnProperty('pc') && typeof cthis.pc[0] != 'undefined'){
                             if((cthis.pc[0].iceConnectionState == 'disconnected') && wbUser.role == 't'){
                                 cthis.pc = [];
                                 cthis.isStarted = false;

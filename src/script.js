@@ -1,6 +1,7 @@
-/** 
- * 
- */
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window, document) {
         var io = window.io;
@@ -47,7 +48,7 @@
                 canvasObj.focus();
 
                 //IMPORTANT  this is changed during the UNIT testing
-                //onkeydown event is working into all browser 
+                //onkeydown event is working into all browser.
                 canvasObj.onkeydown = whBoard.utility.keyOperation;
 
                 whBoard.system.setCanvasDimension();
@@ -74,7 +75,7 @@
              */
             arrowInit: function() {
                 this.arrImg = new Image();
-                this.arrImg.src = (typeof window.whiteboardPath != 'undefined') ? window.whiteboardPath   + '/images/arrow.png' : '/images/arrow.png';
+                this.arrImg.src = (typeof window.whiteboardPath != 'undefined') ? window.whiteboardPath + '/images/arrow.png' : '/images/arrow.png';
                 this.arrImgDraw = false;
                 var wb = this;
                 this.arrImg.onload = function() {
@@ -99,7 +100,6 @@
                 } else {
                     document.getElementById('containerWb').appendChild(cmdToolsWrapper);
                 }
-                
                 whBoard.createDiv('t_rectangle', 'rectangle', cmdToolsWrapper, 'tool');
                 whBoard.createDiv('t_line', 'line', cmdToolsWrapper, 'tool');
                 whBoard.createDiv('t_freeDrawing', 'freeDrawing', cmdToolsWrapper, 'tool');
@@ -135,13 +135,11 @@
 
                 var imgTag = document.createElement('img');
                 imgTag.alt = whBoard.lang.getString(text);
-                
                 if(typeof window.whiteboardPath != 'undefined'){
-                    imgTag.src = window.whiteboardPath + '/images/' +  text + ".png";
+                    imgTag.src = window.whiteboardPath + '/images/' + text + ".png";
                 }else{
-                    imgTag.src =  '/images/' +  text + ".png";
+                    imgTag.src = '/images/' + text + ".png";
                 }
-                
                 ancTag.appendChild(imgTag);
                 ancTag.title = '';
                 ancTag.dataset.title = text;
@@ -245,7 +243,6 @@
                     var ctx = vcan.main.canvas.getContext('2d');
                 }
 
-
                 var allChilds = whBoard.vcan.getStates('children');
 
                 if (allChilds.length > 0 && cmd != 't_clearall') {
@@ -292,7 +289,6 @@
                     var toolHeight = localStorage.getItem('toolHeight');
                     if (toolHeight != null) {
                           whBoard.utility.beforeSend({'assignRole': true, 'toolHeight': toolHeight, 'socket': whBoard.socketOn});
-                        
                     } else {
                         whBoard.utility.beforeSend({'assignRole': true, 'socket': whBoard.socketOn});
                     }
@@ -326,7 +322,7 @@
              */
             tool_obj: function(cmd) {
                 this.cmd = cmd;
-                //when other objecti 
+                //when other objecti.
                 if (cmd != 't_freeDrawing') {
                     whBoard.obj.freeDrawObj = "";
                 }
@@ -359,7 +355,7 @@
              * it replays all the object the user would drawn 
              */
             t_replayInit: function(repMode, myfunc) {
-                // TODO this should be enable 
+                // TODO this should be enable.
                 whBoard.replay = whBoard._replay();
                 whBoard.replay.init(repMode);
 

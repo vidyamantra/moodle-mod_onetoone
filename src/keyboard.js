@@ -1,3 +1,9 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
+
+
 (
     function(window) {
         window.onload = function() {
@@ -39,8 +45,8 @@
                 }
             }
 
-            // this is used for demo only 
-            // todo should be into seprate file
+            // this is used for demo only.
+            // todo should be into seprate file.
             var io = window.io;
             function connectionOpen() {
                 io.wsconnect();

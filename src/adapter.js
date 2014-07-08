@@ -1,3 +1,9 @@
+// This file is part of google
+/**
+ * @author(Current)  Suman Bogati <http://www.vidyamantra.com>
+ * @author(Previous) google.
+  */
+
 (
     function(window) {
         var whBoard = window.whBoard;
@@ -80,4 +86,3 @@
         }
     }
 )(window);
-

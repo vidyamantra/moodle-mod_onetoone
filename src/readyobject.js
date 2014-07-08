@@ -1,4 +1,7 @@
-(
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */(
     function(window) {
         var vcan = window.vcan;
 
@@ -15,7 +18,7 @@
                 //TODO this should be done into proper way or proper format
                 // I think it would be better if below condition would
 
-                // obj.id == undefined is used for drawing free draw for 
+                // obj.id == undefined is used for drawing free draw for.
                 // multi user
                 if (replayObject != true && obj.id == undefined) {
                     vcan.main.id++;
@@ -25,7 +28,7 @@
 
                 obj.cornersize = 12;
                 obj.rotatingPointOffset = 40;
-                obj.selectable = true; //TODO this could be removed not sure but draggable property already defined 
+                obj.selectable = true; //TODO this could be removed not sure but draggable property already defined.
                 obj.downObj = false;
                 obj.active = false; //TODO that should be set through setActive() function
                 obj.cornersize = 12;
@@ -61,7 +64,6 @@
                     obj.scaleY = 1;
                 }
 
-
                 if (obj.type == 'line') {
                     vcan.objLine = new vcan.line();
                     vcan.objLine.init(obj);
@@ -96,7 +98,6 @@
                     return this.height * this.scaleY;
                 }
 
-
                 /**
                  * Sets the 9 co-ordinates for particular object
                  * tl, tr, bl, br, ml, mt, mr, mb, mtr	 
@@ -121,7 +122,6 @@
                             theta = this.theta,
                             sinTh = Math.sin(theta),
                             cosTh = Math.cos(theta);
-
 
                     var tl = {
                         x: this.x - offsetX,
@@ -164,7 +164,6 @@
                         y: tl.y + (this.currentWidth / 2 * sinTh)
                     };
 
-
                     // clockwise
                     this.oCoords = {tl: tl, tr: tr, br: br, bl: bl, ml: ml, mt: mt, mr: mr, mb: mb, mtr: mtr};
 
@@ -181,9 +180,9 @@
                     obj.findTargetCorner = function(e) {
                         var offset = vcan.main.offset;
 
-                        if (!this.hasControls)
+                        if (!this.hasControls){
                             return false;
-
+                        }
                         var pointer = vcan.utility.actualPointer(e);
                         var ex = pointer.x - offset.x,
                                 ey = pointer.y - offset.y;
@@ -207,8 +206,6 @@
                     return this;
                 }
 
-
-
                 /**
                  * Draws borders of an object's bounding box.
                  * Requires properties: width, height
@@ -219,9 +216,9 @@
                 //TOOD that function  should create through the contstructor of object
                 obj.drawBorders = function(ctx) {
 
-                    if (!this.hasBorders)
+                    if (!this.hasBorders){
                         return;
-
+                    }
                     var padding = this.padding,
                             padding2 = padding * 2;
 
@@ -272,8 +269,9 @@
                  */
                 obj.drawCorners = function(ctx) {
 
-                    if (!this.hasControls)
+                    if (!this.hasControls){
                         return;
+                    }
 
                     var size = this.cornersize,
                             size2 = size / 2,
@@ -347,7 +345,6 @@
 
                     return this;
                 }
-
 
                 /**
                  * Sets state of an object - `true` makes it active, `false` - inactive
@@ -542,7 +539,6 @@
                                     //todo earlier there was obj instead of obj
                                     // x: coords.mtr.x - sinHalfOffset + (sinTh * obj.rotatingPointOffset),
 
-
                                     x: coords.mtr.x - sinHalfOffset + (sinTh * this.rotatingPointOffset),
                                     y: coords.mtr.y - cosHalfOffset - (cosTh * this.rotatingPointOffset)
                                 },
@@ -560,9 +556,7 @@
                                 }
                             };
 
-
                         }
-
 
                 /**
                  * Returns object's angle value

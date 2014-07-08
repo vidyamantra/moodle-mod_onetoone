@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         whBoard = window.whBoard;
@@ -80,36 +84,28 @@
             var msg = whBoard.lang.getString('drawArea');
             whBoard.view.displayMessage(msg, "canvasDrawArea", whBoard.view.msgBoxClass + className, 'containerWb', false);
         }
-        
-        window.whBoard.view.displayMsgBox =  function (id, msg){
+        window.whBoard.view.displayMsgBox = function (id, msg){
             var div = whBoard.view.customCreateElement('div', id);
-            
-            var p =  whBoard.view.customCreateElement('p', id+"Para");
+            var p = whBoard.view.customCreateElement('p', id + "Para");
             p.innerHTML = whBoard.lang.getString(msg);
             div.appendChild(p);
-            
-            var a = whBoard.view.customCreateElement('a', id+"Anchor");
+            var a = whBoard.view.customCreateElement('a', id + "Anchor");
             a.href = window.location;
-            a.innerHTML  = whBoard.lang.getString('reload');
+            a.innerHTML = whBoard.lang.getString('reload');
             a.onclick = function (){
                 window.location.reload();
             }
-            
             div.appendChild(a);
-          
             var vcanvas = document.getElementById('vcanvas');
             vcanvas.parentNode.insertBefore(div, vcanvas);
         }
-        
-        
-        window.whBoard.view.displayServerError =  function (id, msg){
+        window.whBoard.view.displayServerError = function (id, msg){
             var div = whBoard.view.customCreateElement('div', id);
             div.innerHTML = msg;
             var vcanvas = document.getElementById('vcanvas');
             vcanvas.parentNode.insertBefore(div, vcanvas);
         }
-        
-        
+
         window.whBoard.view.removeElement = function (id){
             var errorDiv = document.getElementById(id);
             if(errorDiv != null){
@@ -130,7 +126,6 @@
         whBoard.view.window.resize = function() {
             var res = whBoard.system.measureResoultion({'width': window.innerWidth, 'height': window.innerHeight});
             var vcanvas = document.getElementById('vcanvas');
-            
             var  rightOffSet = whBoard.utility.getElementRightOffSet(vcanvas);
             res.width = res.width - rightOffSet; //60 for right edge
             vcanvas.style.width = res.width + 'px';
@@ -151,7 +146,6 @@
                 whBoard.utility.beforeSend({'virtualWindow': {'resizeWindow': res}});
             }, 500);
         },
-         
         whBoard.view.virtualWindow.manupulation = function(e) {
             var message = e.message.virtualWindow;
             if (message.hasOwnProperty('removeVirtualWindow')) {
@@ -224,9 +218,9 @@
                            var canvaContainer = document.getElementById("vcanvas");
                            var rightOffset = whBoard.utility.getElementRightOffSet(canvaContainer);
                             if (localStorage.getItem('teacherId') != null) {
-                                whBoard.utility.beforeSend({'virtualWindow': {'createVirtualWindow': myBrowser-rightOffset, 'toolHeight': toolBoxHeight}});
+                                whBoard.utility.beforeSend({'virtualWindow': {'createVirtualWindow': myBrowser - rightOffset, 'toolHeight': toolBoxHeight}});
                             } else {
-                                whBoard.utility.beforeSend({'virtualWindow': {'createVirtualWindow': myBrowser-rightOffset}});
+                                whBoard.utility.beforeSend({'virtualWindow': {'createVirtualWindow': myBrowser - rightOffset}});
                             }
                         }
                     }

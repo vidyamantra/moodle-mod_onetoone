@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         var whBoard = window.whBoard;
@@ -63,7 +67,7 @@
              * @param evt expects key down event
              */
             keyOperation: function(evt) {
-                //this is used for removed the selected object	
+                // This is used for removed the selected object.
                 var currTime = new Date().getTime();
                 if (evt.keyCode == 8) {
                     var vcan = whBoard.vcan;
@@ -142,7 +146,6 @@
                         }
                     }
                 }
-                
                 if (typeof pkMode == 'undefined') {
                     whBoard.sentPackets = 0;
                     whBoard.receivedPackets = 0;
@@ -187,7 +190,6 @@
                 }
                 return false;
             },
-            
 
             /**
              *   This function just determines the mouse 
@@ -222,7 +224,7 @@
                 ev.currX = posMous.x;
                 ev.currY = posMous.y;
 
-                //here the particular function is calling according to mouse event 
+                // Here the particular function is calling according to mouse event.
                 var func = whBoard.tool[ev.type];
                 if (func) {
                     func(ev);
@@ -259,7 +261,6 @@
             calcPsSentPackets: function(oldData) {
                 if (whBoard.utility.chkValueInLocalStorage('orginalTeacherId')) {
                     var pacPerSec = whBoard.sentPackets - oldData;
-                   
                     if (pacPerSec < 0) {
                         pacPerSec = 0;
                     }
@@ -275,15 +276,13 @@
                 if (pacPerSec < 0) {
                     pacPerSec = 0;
                 }
-                
                 if(document.getElementById(whBoard.receivedPackDivPS) != null){
                     document.getElementById(whBoard.receivedPackDivPS).innerHTML = pacPerSec;
                 }
-                
                 return whBoard.receivedPackets;
             },
             //initialize transfred packets from local storage when
-            // browser is reloaded
+            // browser is reloaded.
             initStoredPacketsNumbers: function() {
                 if (whBoard.utility.chkValueInLocalStorage('orginalTeacherId')) {
                     if (localStorage.sentPackets) {
@@ -326,7 +325,6 @@
                     }
 
                     window.whBoard.attachToolFunction(vcan.cmdWrapperDiv, true);
-                    
                     if(whBoard.hasOwnProperty('canvasDisable') || whBoard.canvasDisable){
                         whBoard.utility.toolWrapperDisable();
                     }
@@ -437,9 +435,8 @@
                     return localStorage[property];
                 }
             },
-            
-            // the uniqueArrOfObjsToStudent and 
-            // uniqueArrOfObjsToTeacher can be into sign 
+            // The uniqueArrOfObjsToStudent and.
+            // uniqueArrOfObjsToTeacher can be into sign.
             uniqueArrOfObjsToStudent: function() {
                 var tempRepObjs = "";
                 whBoard.gObj.replayObjs = [];
@@ -657,8 +654,9 @@
             },
             setStyleUserConnetion: function(currClass, newClass, whoIs) {
                 var cdiv = document.getElementsByClassName(currClass)[0];
-                if (cdiv != null)
-                    cdiv.setAttribute('class', newClass + ' controlCmd');
+                if (cdiv != null){
+                        cdiv.setAttribute('class', newClass + ' controlCmd');
+                    }
             },
             existUserLikeMe: function(e) {
                 if (e.fromUser.userid != wbUser.id) {
@@ -733,7 +731,6 @@
                 // This is disabled because its need to be enable for teacher
                 //TODO this should be evaluate
                  whBoard.utility.toolWrapperDisable();
-               
             },
             initAll: function(e) {
                 if (localStorage.getItem('teacherId') != null) {
@@ -840,7 +837,7 @@
                     if (localStorage.getItem('studentId') != null) {
                         localStorage.removeItem('studentId');
                     }
-                } else if (role == 's') { //If i am student	
+                } else if (role == 's') { //If i am student
                     if (localStorage.getItem('orginalTeacherId') != null) {
                         localStorage.removeItem('orginalTeacherId');
                         if (localStorage.getItem('teacherId') != null) {
@@ -879,7 +876,6 @@
             sendRequest: function(msg, value) {
                 whBoard.utility.beforeSend({'reclaimRole': true});
             },
-    
             updateSentInformation: function(jobj, createArrow) {
                 if (whBoard.utility.chkValueInLocalStorage('orginalTeacherId')) {
                     var sentObj = JSON.parse(jobj);
@@ -898,7 +894,6 @@
                     }
                 }
             },
-            
             /**
              * the operation before send infor to server
              * @param {type} msg
@@ -926,7 +921,6 @@
                 }
                 localStorage.sentPackets = whBoard.sentPackets;
             },
-            
            checkCanvasHasParents : function (){
                var currentTag = document.getElementById("vcanvas");
                while(currentTag.parentNode.tagName != 'BODY'){
@@ -936,13 +930,11 @@
                    }
                    currentTag  = currentTag.parentNode;
                }
-               
                if(currentTag.id != 'vcanvas'){
                    currentTag.style.margin = "0";
                    currentTag.style.padding = "0";
                }
            },
-           
            lockCanvas : function (){
                 if(window.earlierWidth != window.innerWidth){
                     whBoard.canvasDisable = true;
@@ -956,18 +948,16 @@
                     }
                 }
            },
-           
             getElementRightOffSet : function (element){
                 var rightOffSet = 20;
                 //if whiteboard has right sidebar
                 if(element.parentNode != null){
                      var elemContainer = element.parentNode;
                      var offset = vcan.utility.getElementOffset(elemContainer);
-                    //WARNING 50 can be dangerous 
-                     //var rspace  = (window.earlierWidth != window.innerWidth)  ? 25 : 40; 
+                    //WARNING 50 can be dangerous.
+                     //var rspace  = (window.earlierWidth != window.innerWidth)  ? 25 : 40;.
                      var rspace = 0;
-                     rightOffSet = window.innerWidth - (elemContainer.clientWidth + (offset.x - rspace)); 
-                    
+                     rightOffSet = window.innerWidth - (elemContainer.clientWidth + (offset.x - rspace));
                 }
                 return rightOffSet;
             }
