@@ -1,39 +1,32 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
 //
-// Capability definitions for the onetoone module.
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
-// The capabilities are loaded into the database table when the module is
-// installed or updated. Whenever the capability definitions are updated,
-// the module version number should be bumped up.
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
 //
-// The system has four possible values for a capability:
-// CAP_ALLOW, CAP_PREVENT, CAP_PROHIBIT, and inherit (not set).
-//
-//
-// CAPABILITY NAMING CONVENTION
-//
-// It is important that capability names are unique. The naming convention
-// for capabilities that are specific to modules and blocks is as follows:
-//   [mod/block]/<component_name>:<capabilityname>
-//
-// component_name should be the same as the directory name of the mod or block.
-//
-// Core moodle capabilities are defined thus:
-//    moodle/<capabilityclass>:<capabilityname>
-//
-// Examples: mod/forum:viewpost
-//           block/recent_activity:view
-//           moodle/site:deleteuser
-//
-// The variable name for the capability definitions array follows the format
-//   $<componenttype>_<component_name>_capabilities
-//
-// For the core capabilities, the variable is $moodle_capabilities.
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @author(current)  Pinky Sharma <http://www.vidyamantra.com>
+ * @author(current)  Suman Bogati <http://www.vidyamantra.com>
+ * @author(previous) Francois Marier <francois@catalyst.net.nz>
+ * @author(previous) Aaron Barnes <aaronb@catalyst.net.nz>
+ * @package mod
+ * @subpackage onetoone
+ */
 $capabilities = array(
 
     // Ability to see that the activity exists, and the basic information
-    // about its sessions
+    // about its sessions.
     'mod/onetoone:view' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
@@ -47,7 +40,7 @@ $capabilities = array(
         )
     ),
 
-    // Ability to signup for a session
+    // Ability to signup for a session.
     'mod/onetoone:signup' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
@@ -60,7 +53,7 @@ $capabilities = array(
         )
     ),
 
-    // Ability to see activities for which no sessions have been added
+    // Ability to see activities for which no sessions have been added.
     'mod/onetoone:viewemptyactivities' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_MODULE,
@@ -71,7 +64,7 @@ $capabilities = array(
         )
     ),
 
-    // Ability to see how many people have signed up for a session
+    // Ability to see how many people have signed up for a session.
     'mod/onetoone:viewattendees' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_COURSE,
@@ -83,7 +76,7 @@ $capabilities = array(
         )
     ),
 
-    // Ability to take attendance
+    // Ability to take attendance.
     'mod/onetoone:takeattendance' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
@@ -95,7 +88,7 @@ $capabilities = array(
         )
     ),
 
-    // Ability to add attendees to a session
+    // Ability to add attendees to a session.
     'mod/onetoone:addattendees' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
@@ -107,7 +100,7 @@ $capabilities = array(
         )
     ),
 
-    // Ability to remove attendees from a session
+    // Ability to remove attendees from a session.
     'mod/onetoone:removeattendees' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
@@ -119,7 +112,7 @@ $capabilities = array(
         )
     ),
 
-    // Ability to add, edit, copy and delete a session
+    // Ability to add, edit, copy and delete a session.
     'mod/onetoone:editsessions' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
@@ -131,7 +124,7 @@ $capabilities = array(
         )
     ),
 
-    // View session cancellations
+    // View session cancellations.
     'mod/onetoone:viewcancellations' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
@@ -144,7 +137,7 @@ $capabilities = array(
     ),
 
     // Ability to overbook a session by signing up for it
-    // Users with mod/onetoone:addattendees can also overbook
+    // Users with mod/onetoone:addattendees can also overbook.
     'mod/onetoone:overbook' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
@@ -156,7 +149,7 @@ $capabilities = array(
         ),
     ),
 
-    // Ability to add a new onetoone activity to a course
+    // Ability to add a new onetoone activity to a course.
     'mod/onetoone:addinstance' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
@@ -167,4 +160,4 @@ $capabilities = array(
     ),
 );
 
-?>
+

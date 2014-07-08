@@ -1,4 +1,29 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @author(current)  Pinky Sharma <http://www.vidyamantra.com>
+ * @author(current)  Suman Bogati <http://www.vidyamantra.com>
+ * @author(previous) Francois Marier <francois@catalyst.net.nz>
+ * @author(previous) Aaron Barnes <aaronb@catalyst.net.nz>
+ * @package mod
+ * @subpackage onetoone
+ */
+
 $string['addmanageremailaddress'] = 'Add manager email address';
 $string['addmanageremailinstruction'] = 'You have not previously entered your manager\'s email address. Please enter it below to sign-up for this session. ';
 $string['addsession'] = 'Add a new session';
@@ -23,7 +48,9 @@ $string['attendanceinstructions'] = 'Select users who attended the session:';
 $string['attendedsession'] = 'Attended session';
 $string['attendees'] = 'Attendees';
 $string['potentialattendees'] = 'Potential Attendees';
+
 $string['attendeestablesummary'] = 'People planning on or having attended this session.';
+
 $string['requeststablesummary'] = 'People requesting to attended this session.';
 $string['booked'] = 'Booked';
 $string['bookingcancelled'] = 'Your booking has been cancelled.';
@@ -525,8 +552,8 @@ $string['youarebooked'] = 'You are booked for the following session';
 $string['youremailaddress'] = 'Your email address';
 $string['error:shortnametaken'] = 'Custom field with this short name already exists.';
 
-// -------------------------------------------------------
-// Help Text
+
+// Help Text.
 
 $string['allowoverbook_help'] = 'When "Allow overbooking" is checked, learners will be able to sign up for a one-to-one session even if it is already full.</p>
 
@@ -587,12 +614,12 @@ $string['location_help'] = '**Location** describes the vicinity of the session (
 
 On the \'View all sessions\' page, the listed sessions can be filtered by location.';
 
-$string['modulename_help'] = 'The One-to-one activity module enables a teacher to set up a voluntary booking system for one in-person/classroom based sessions. 
-        
+$string['modulename_help'] = 'The One-to-one activity module enables a teacher to set up a voluntary booking system for one in-person/classroom based sessions.
+
 Each session within a One-to-one activity can have customised settings eg:- start time, finish time and description.
 
 Students can view and sign-up for sessions with their attendance tracked and recorded within the Grades area.';
-    
+
 
 $string['mods_help'] = 'One-to-one activities are used to keep track of in-person trainings which require advance booking.
 

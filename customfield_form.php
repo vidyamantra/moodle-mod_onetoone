@@ -1,12 +1,33 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-require_once "$CFG->dirroot/lib/formslib.php";
-require_once "$CFG->dirroot/mod/onetoone/lib.php";
+/**
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @author(current)  Pinky <http://www.vidyamantra.com>
+ * @author(previous) Francois Marier <francois@catalyst.net.nz>
+ * @author(previous) Aaron Barnes <aaronb@catalyst.net.nz>
+ * @package mod
+ * @subpackage onetoone
+ */
+require_once("$CFG->dirroot/lib/formslib.php");
+require_once("$CFG->dirroot/mod/onetoone/lib.php");
 
 class mod_onetoone_customfield_form extends moodleform {
 
-    function definition()
-    {
+    function definition() {
         $mform =& $this->_form;
 
         $mform->addElement('header', 'general', get_string('general', 'form'));
@@ -54,7 +75,7 @@ class mod_onetoone_customfield_form extends moodleform {
         $params = array($data['id'], $data['shortname']);
 
         if ($DB->record_exists_select('onetoone_session_field', $where, $params)) {
-            $errors['shortname']= get_string('error:shortnametaken', 'onetoone');
+            $errors['shortname'] = get_string('error:shortnametaken', 'onetoone');
         }
 
         return $errors;

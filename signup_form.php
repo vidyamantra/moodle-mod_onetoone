@@ -1,11 +1,34 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-require_once "$CFG->dirroot/lib/formslib.php";
+/**
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @author(current)  Pinky Sharma <http://www.vidyamantra.com>
+ * @author(previous) Francois Marier <francois@catalyst.net.nz>
+ * @author(previous) Aaron Barnes <aaronb@catalyst.net.nz>
+ * @package mod
+ * @subpackage onetoone
+ */
+
+
+require_once("$CFG->dirroot/lib/formslib.php");
 
 class mod_onetoone_signup_form extends moodleform {
 
-    function definition()
-    {
+    function definition() {
         $mform =& $this->_form;
         $manageremail = $this->_customdata['manageremail'];
         $showdiscountcode = $this->_customdata['showdiscountcode'];
@@ -14,13 +37,11 @@ class mod_onetoone_signup_form extends moodleform {
         $mform->setType('s', PARAM_INT);
         $mform->addElement('hidden', 'backtoallsessions', $this->_customdata['backtoallsessions']);
         $mform->setType('backtoallsessions', PARAM_INT);
-        
         if ($manageremail === false) {
             $mform->addElement('hidden', 'manageremail', '');
             $mform->setType('manageremail', PARAM_TEXT);
-        }
-        else {
-            $mform->addElement('html', get_string('manageremailinstructionconfirm', 'onetoone')); // instructions
+        } else {
+            $mform->addElement('html', get_string('manageremailinstructionconfirm', 'onetoone')); // Instructions.
 
             $mform->addElement('text', 'manageremail', get_string('manageremail', 'onetoone'), 'size="35"');
             $mform->addRule('manageremail', null, 'required', null, 'client');
@@ -32,8 +53,7 @@ class mod_onetoone_signup_form extends moodleform {
             $mform->addElement('text', 'discountcode', get_string('discountcode', 'onetoone'), 'size="6"');
             $mform->addRule('discountcode', null, 'required', null, 'client');
             $mform->setType('discountcode', PARAM_TEXT);
-        }
-        else {
+        } else {
             $mform->addElement('hidden', 'discountcode', '');
             $mform->setType('discountcode', PARAM_TEXT);
         }
@@ -50,17 +70,14 @@ class mod_onetoone_signup_form extends moodleform {
         $this->add_action_buttons(true, get_string('signup', 'onetoone'));
     }
 
-    function validation($data, $files)
-    {
+    function validation($data, $files) {
         $errors = parent::validation($data, $files);
-
         $manageremail = $data['manageremail'];
         if (!empty($manageremail)) {
             if (!onetoone_check_manageremail($manageremail)) {
                 $errors['manageremail'] = onetoone_get_manageremailformat();
             }
         }
-
         return $errors;
     }
 }

@@ -1,12 +1,34 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-require_once '../../config.php';
-require_once 'lib.php';
-require_once 'cancelsignup_form.php';
+/**
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @author(current)  Pinky <http://www.vidyamantra.com>
+ * @author(previous) Francois Marier <francois@catalyst.net.nz>
+ * @author(previous) Aaron Barnes <aaronb@catalyst.net.nz>
+ * @package mod
+ * @subpackage onetoone
+ */
+require_once( '../../config.php');
+require_once('lib.php');
+require_once('cancelsignup_form.php');
 
 
 
-$s  = required_param('s', PARAM_INT); // onetoone session ID
+$s  = required_param('s', PARAM_INT); // Onetoone session ID.
 $confirm           = optional_param('confirm', false, PARAM_BOOL);
 $backtoallsessions = optional_param('backtoallsessions', 0, PARAM_INT);
 
@@ -37,7 +59,7 @@ if ($mform->is_cancelled()) {
     redirect($returnurl);
 }
 
-if ($fromform = $mform->get_data()) { // Form submitted
+if ($fromform = $mform->get_data()) { // Form submitted.
 
     if (empty($fromform->submitbutton)) {
         print_error('error:unknownbuttonclicked', 'onetoone', $returnurl);
@@ -55,10 +77,11 @@ if ($fromform = $mform->get_data()) { // Form submitted
             $error = onetoone_send_cancellation_notice($onetoone, $session, $USER->id);
             if (empty($error)) {
                 if ($session->datetimeknown && $onetoone->cancellationinstrmngr) {
-                    $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br') . get_string('cancellationsentmgr', 'onetoone');
-                }
-                else {
-                    $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br') . get_string('cancellationsent', 'onetoone');
+                    $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br') .
+                            get_string('cancellationsentmgr', 'onetoone');
+                } else {
+                    $message .= html_writer::empty_tag('br') . html_writer::empty_tag('br') .
+                            get_string('cancellationsent', 'onetoone');
                 }
             } else {
                 print_error($error, 'onetoone');
@@ -66,8 +89,7 @@ if ($fromform = $mform->get_data()) { // Form submitted
         }
 
         redirect($returnurl, $message, $timemessage);
-    }
-    else {
+    } else {
         add_to_log($course->id, 'onetoone', "cancel booking (FAILED)", "cancelsignup.php?s=$session->id", $onetoone->id, $cm->id);
         redirect($returnurl, $errorstr, $timemessage);
     }
@@ -78,7 +100,8 @@ if ($fromform = $mform->get_data()) { // Form submitted
 $pagetitle = format_string($onetoone->name);
 
 $PAGE->set_cm($cm);
-$PAGE->set_url('/mod/onetoone/cancelsignup.php', array('s' => $s, 'backtoallsessions' => $backtoallsessions, 'confirm' => $confirm));
+$PAGE->set_url('/mod/onetoone/cancelsignup.php', array('s' => $s,
+    'backtoallsessions' => $backtoallsessions, 'confirm' => $confirm));
 
 $PAGE->set_title($pagetitle);
 $PAGE->set_heading($course->fullname);
@@ -96,8 +119,7 @@ echo $OUTPUT->heading($heading);
 if ($signedup) {
     onetoone_print_session($session, $viewattendees);
     $mform->display();
-}
-else {
+} else {
     print_error('notsignedup', 'onetoone', $returnurl);
 }
 

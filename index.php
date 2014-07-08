@@ -1,11 +1,34 @@
 <?php
+//  This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-require_once '../../config.php';
-require_once 'lib.php';
+/**
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @author(current)  Pinky Sharma <http://www.vidyamantra.com>
+ * @author(previous) Francois Marier <francois@catalyst.net.nz>
+ * @author(previous) Aaron Barnes <aaronb@catalyst.net.nz>
+ * @package mod
+ * @subpackage onetoone
+ */
+
+require_once('../../config.php');
+require_once('lib.php');
 
 global $DB;
 
-$id = required_param('id', PARAM_INT); // Course Module ID
+$id = required_param('id', PARAM_INT); // Course Module ID.
 
 if (!$course = $DB->get_record('course', array('id' => $id))) {
     print_error('error:coursemisconfigured', 'onetoone');
@@ -47,20 +70,16 @@ $table->width = '100%';
 if ($course->format == 'weeks' && has_capability('mod/onetoone:viewattendees', $context)) {
     $table->head  = array ($strweek, $stronetoonename, get_string('sign-ups', 'onetoone'));
     $table->align = array ('center', 'left', 'center');
-}
-elseif ($course->format == 'weeks') {
+} else if ($course->format == 'weeks') {
     $table->head  = array ($strweek, $stronetoonename);
     $table->align = array ('center', 'left', 'center', 'center');
-}
-elseif ($course->format == 'topics' && has_capability('mod/onetoone:viewattendees', $context)) {
+} else if ($course->format == 'topics' && has_capability('mod/onetoone:viewattendees', $context)) {
     $table->head  = array ($strcourse, $stronetoonename, get_string('sign-ups', 'onetoone'));
     $table->align = array ('center', 'left', 'center');
-}
-elseif ($course->format == 'topics') {
+} else if ($course->format == 'topics') {
     $table->head  = array ($strcourse, $stronetoonename);
     $table->align = array ('center', 'left', 'center', 'center');
-}
-else {
+} else {
     $table->head  = array ($stronetoonename);
     $table->align = array ('left', 'left');
 }
@@ -72,11 +91,10 @@ foreach ($onetoones as $onetoone) {
     $submitted = get_string('no');
 
     if (!$onetoone->visible) {
-        //Show dimmed if the mod is hidden
+        // Show dimmed if the mod is hidden.
         $link = html_writer::link("view.php?f=$onetoone->id", $onetoone->name, array('class' => 'dimmed'));
-    }
-    else {
-        //Show normal if the mod is visible
+    } else {
+        // Show normal if the mod is visible.
         $link = html_writer::link("view.php?f=$onetoone->id", $onetoone->name);
     }
 
@@ -102,12 +120,10 @@ foreach ($onetoones as $onetoone) {
     if ($course->format == 'weeks' or $course->format == 'topics') {
         if (has_capability('mod/onetoone:viewattendees', $context)) {
             $table->data[] = array ($courselink, $link, $totalsignupcount);
-        }
-        else {
+        } else {
             $table->data[] = array ($courselink, $link);
         }
-    }
-    else {
+    } else {
         $table->data[] = array ($link, $submitted);
     }
 }

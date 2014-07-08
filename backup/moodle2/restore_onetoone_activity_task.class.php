@@ -1,8 +1,32 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @author(current)  Pinky Sharma <http://www.vidyamantra.com>
+ * @author(current)  Suman Bogati <http://www.vidyamantra.com>
+ * @author(previous) Francois Marier <francois@catalyst.net.nz>
+ * @author(previous) Aaron Barnes <aaronb@catalyst.net.nz>
+ * @package mod
+ * @subpackage onetoone
+ */
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/mod/onetoone/backup/moodle2/restore_onetoone_stepslib.php'); // Because it exists (must)
+require_once($CFG->dirroot . '/mod/onetoone/backup/moodle2/restore_onetoone_stepslib.php'); // Because it exists (must).
 
 /**
  * onetoone restore task that provides all the settings and steps to perform one
@@ -14,7 +38,7 @@ class restore_onetoone_activity_task extends restore_activity_task {
      * Define (add) particular settings this activity can have
      */
     protected function define_my_settings() {
-        // No particular settings for this activity
+        // No particular settings for this activity.
     }
 
     /**
@@ -31,8 +55,6 @@ class restore_onetoone_activity_task extends restore_activity_task {
      */
     static public function define_decode_contents() {
         $contents = array();
-
-//        $contents[] = new restore_decode_content('onetoone', array(), 'onetoone');
 
         return $contents;
     }
@@ -80,4 +102,3 @@ class restore_onetoone_activity_task extends restore_activity_task {
         return $rules;
     }
 }
-?>

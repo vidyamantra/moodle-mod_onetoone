@@ -1,24 +1,47 @@
-<?php 
-function my_curl_request($url, $post_data)
-{
+<?php
+// This file is part of vidyamantra - http://www.vidyamantra.com
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @author   Pinky Sharma <http://www.vidyamantra.com>
+ * @author   Suman Bogati <http://www.vidyamantra.com>
+ * @package mod
+ * @subpackage onetoone
+ */
+
+
+function my_curl_request($url, $postdata) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_HEADER, 'content-type: text/plain;');
     curl_setopt($ch, CURLOPT_TRANSFERTEXT, 0);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_PROXY, false);
     curl_setopt($ch, CURLOPT_SSLVERSION, 1);
-   
-    // added for curl slow connection time 
-    // refrence by http://stackoverflow.com/questions/11143180/curl-slow-connect-time
+
+    // Added for curl slow connection time.
+    // Refrence by http://stackoverflow.com/questions/11143180/curl-slow-connect-time.
     curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
 
     $result = @curl_exec($ch);
-    if($result === false){
+    if ($result === false) {
         echo 'Curl error: ' . curl_error($ch);
         exit;
     }
@@ -28,29 +51,27 @@ function my_curl_request($url, $post_data)
 }
 
 
- $result= $DB->get_field('config_plugins', 'value', array ('plugin' => 'local_getkey', 'name' => 'keyvalue'), $strictness=IGNORE_MISSING);
- 
+ $result = $DB->get_field('config_plugins', 'value', array ('plugin' => 'local_getkey',
+     'name' => 'keyvalue'), $strictness = IGNORE_MISSING);
+
  $licen = $result;
 
-//send auth detail to python script 
- $authusername = substr(str_shuffle(MD5(microtime())), 0, 12);
- $authpassword = substr(str_shuffle(MD5(microtime())), 0, 12);
- 
- $post_data = array('authuser'=> $authusername,'authpass' => $authpassword, 'licensekey' => $licen);
- $post_data = json_encode($post_data);
- $rid = my_curl_request("https://c.vidya.io", $post_data); // REMOVE HTTP
- 
-    
- if(empty($rid) or strlen($rid) > 32){
-  	echo "Chat server is unavailable!";
-  	exit;
- }
- 
+// Send auth detail to python script.
+ $authusername = substr(str_shuffle(md5(microtime())), 0, 12);
+ $authpassword = substr(str_shuffle(md5(microtime())), 0, 12);
 
- if($rid =='Rejected - Key Not Active'){
+ $postdata = array('authuser' => $authusername, 'authpass' => $authpassword, 'licensekey' => $licen);
+ $postdata = json_encode($postdata);
+ $rid = my_curl_request("https://c.vidya.io", $postdata); // REMOVE HTTP.
+if (empty($rid) or strlen($rid) > 32) {
+    echo "Chat server is unavailable!";
+    exit;
+}
+
+if ($rid == 'Rejected - Key Not Active') {
     echo "<script>alert('license key is not valid for onetoone'); </script>";
     exit;
- }
+}
 ?>
 
 <script type="text/javascript">

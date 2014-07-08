@@ -1,26 +1,26 @@
 <?php
-/*
- * This file is part of Totara LMS
- *
- * Copyright (C) 2010, 2011 Totara Learning Solutions LTD
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * @author Alastair Munro <alastair.munro@totaralms.com>
- * @author Aaron Barnes <aaron.barnes@totaralms.com>
- * @author Francois Marier <francois@catalyst.net.nz>
- * @package modules
+//.This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * @author(current)  Pinky Sharma <http://www.vidyamantra.com>
+ * @author(current)  Suman Bogati <http://www.vidyamantra.com>
+ * @author(previous) Francois Marier <francois@catalyst.net.nz>
+ * @author(previous) Aaron Barnes <aaronb@catalyst.net.nz>
+ * @package mod
  * @subpackage onetoone
  */
 defined('MOODLE_INTERNAL') || die();
@@ -49,31 +49,31 @@ define('MDL_O2O_CANCEL',        8);
 /**
  * Definitions for use in forms
  */
-define('MDL_O2O_INVITE_BOTH',        7);     // Send a copy of both 4+1+2
-define('MDL_O2O_INVITE_TEXT',        6);     // Send just a plain email 4+2
-define('MDL_O2O_INVITE_ICAL',        5);     // Send just a combined text/ical message 4+1
-define('MDL_O2O_CANCEL_BOTH',        11);    // Send a copy of both 8+2+1
-define('MDL_O2O_CANCEL_TEXT',        10);    // Send just a plan email 8+2
-define('MDL_O2O_CANCEL_ICAL',        9);     // Send just a combined text/ical message 8+1
+define('MDL_O2O_INVITE_BOTH',        7);     // Send a copy of both 4+1+2.
+define('MDL_O2O_INVITE_TEXT',        6);     // Send just a plain email 4+2.
+define('MDL_O2O_INVITE_ICAL',        5);     // Send just a combined text/ical message 4+1.
+define('MDL_O2O_CANCEL_BOTH',        11);    // Send a copy of both 8+2+1.
+define('MDL_O2O_CANCEL_TEXT',        10);    // Send just a plan email 8+2.
+define('MDL_O2O_CANCEL_ICAL',        9);     // Send just a combined text/ical message 8+1.
 
-// Name of the custom field where the manager's email address is stored
+// Name of the custom field where the manager's email address is stored.
 define('O2O_MDL_MANAGERSEMAIL_FIELD', 'managersemail');
 
-// Custom field related constants
+// Custom field related constants.
 define('O2O_CUSTOMFIELD_DELIMITER', '##SEPARATOR##');
 define('O2O_CUSTOMFIELD_TYPE_TEXT',        0);
 define('O2O_CUSTOMFIELD_TYPE_SELECT',      1);
 define('O2O_CUSTOMFIELD_TYPE_MULTISELECT', 2);
 
-// Calendar-related constants
+// Calendar-related constants.
 define('O2O_CALENDAR_MAX_NAME_LENGTH', 15);
 define('O2O_CAL_NONE',      0);
 define('O2O_CAL_COURSE',    1);
 define('O2O_CAL_SITE',      2);
 
-// Signup status codes (remember to update $MDL_O2O_STATUS)
+// Signup status codes (remember to update $MDL_O2O_STATUS).
 define('MDL_O2O_STATUS_USER_CANCELLED',     10);
-// SESSION_CANCELLED is not yet implemented
+// SESSION_CANCELLED is not yet implemented.
 define('MDL_O2O_STATUS_SESSION_CANCELLED',  20);
 define('MDL_O2O_STATUS_DECLINED',           30);
 define('MDL_O2O_STATUS_REQUESTED',          40);
@@ -84,13 +84,13 @@ define('MDL_O2O_STATUS_NO_SHOW',            80);
 define('MDL_O2O_STATUS_PARTIALLY_ATTENDED', 90);
 define('MDL_O2O_STATUS_FULLY_ATTENDED',     100);
 
-// This array must match the status codes above, and the values
-// must equal the end of the constant name but in lower case
+// This array must match the status codes above, and the values.
+// must equal the end of the constant name but in lower case.
 global $MDL_O2O_STATUS;
 $MDL_O2O_STATUS = array(
     MDL_O2O_STATUS_USER_CANCELLED       => 'user_cancelled',
-//  SESSION_CANCELLED is not yet implemented
-//    MDL_O2O_STATUS_SESSION_CANCELLED    => 'session_cancelled',
+// SESSION_CANCELLED is not yet implemented.
+// MDL_O2O_STATUS_SESSION_CANCELLED    => 'session_cancelled'.
     MDL_O2O_STATUS_DECLINED             => 'declined',
     MDL_O2O_STATUS_REQUESTED            => 'requested',
     MDL_O2O_STATUS_APPROVED             => 'approved',
@@ -101,23 +101,22 @@ $MDL_O2O_STATUS = array(
     MDL_O2O_STATUS_FULLY_ATTENDED       => 'fully_attended',
 );
 
-/**
+/*
  * Returns the human readable code for a face-to-face status
- *
- * @param int $statuscode One of the MDL_O2O_STATUS* constants
+ * * @param int $statuscode One of the MDL_O2O_STATUS* constants
  * @return string Human readable code
  */
 function onetoone_get_status($statuscode) {
     global $MDL_O2O_STATUS;
-    // Check code exists
+    // Check code exists.
     if (!isset($MDL_O2O_STATUS[$statuscode])) {
         print_error('O2O status code does not exist: '.$statuscode);
     }
 
-    // Get code
+    // Get code.
     $string = $MDL_O2O_STATUS[$statuscode];
 
-    // Check to make sure the status array looks to be up-to-date
+    // Check to make sure the status array looks to be up-to-date.
     if (constant('MDL_O2O_STATUS_'.strtoupper($string)) != $statuscode) {
         print_error('O2O status code array does not appear to be up-to-date: '.$statuscode);
     }
@@ -125,13 +124,11 @@ function onetoone_get_status($statuscode) {
     return $string;
 }
 
-/**
+/*
  * Prints the cost amount along with the appropriate currency symbol.
- *
  * To set your currency symbol, set the appropriate 'locale' in
  * lang/en_utf8/langconfig.php (or the equivalent file for your
  * language).
- *
  * @param $amount      Numerical amount without currency symbol
  * @param $htmloutput  Whether the output is in HTML or not
  */
@@ -141,41 +138,38 @@ function onetoone_format_cost($amount, $htmloutput=true) {
 
     $symbol = $localeinfo['currency_symbol'];
     if (empty($symbol)) {
-        // Cannot get the locale information, default to en_US.UTF-8
+        // Cannot get the locale information, default to en_US.UTF-8.
         return '$' . $amount;
     }
-
-    // Character between the currency symbol and the amount
+    // Character between the currency symbol and the amount.
     $separator = '';
     if ($localeinfo['p_sep_by_space']) {
         $separator = $htmloutput ? '&nbsp;' : ' ';
     }
 
-    // The symbol can come before or after the amount
+    // The symbol can come before or after the amount.
     if ($localeinfo['p_cs_precedes']) {
         return $symbol . $separator . $amount;
-    }
-    else {
+    } else {
         return $amount . $separator . $symbol;
     }
 }
 
-/**
+/*
  * Returns the effective cost of a session depending on the presence
  * or absence of a discount code.
- *
  * @param class $sessiondata contains the discountcost and normalcost
  */
 function onetoone_cost($userid, $sessionid, $sessiondata, $htmloutput=true) {
 
-    global $CFG,$DB;
+    global $CFG, $DB;
 
     $count = $DB->count_records_sql("SELECT COUNT(*)
                                FROM {onetoone_signups} su,
                                     {onetoone_sessions} se
                               WHERE su.sessionid = ?
                                 AND su.userid = ?
-                                AND su.discountcode IS NOT NULL
+                                AND su.discountcode IS NOT null
                                 AND su.sessionid = se.id", array($sessionid, $userid));
     if ($count > 0) {
         return onetoone_format_cost($sessiondata->discountcost, $htmloutput);
@@ -184,55 +178,51 @@ function onetoone_cost($userid, $sessionid, $sessiondata, $htmloutput=true) {
     }
 }
 
-/**
+/*
  * Human-readable version of the duration field used to display it to
  * users
- *
  * @param   integer $duration duration in hours
  * @return  string
  */
 function onetoone_format_duration($duration) {
-
     $components = explode(':', $duration);
-
-    // Default response
+    // Default response.
     $string = '';
 
-    // Check for bad characters
+    // Check for bad characters.
     if (trim(preg_match('/[^0-9:\.\s]/', $duration))) {
         return $string;
     }
 
     if ($components and count($components) > 1) {
-        // e.g. "1:30" => "1 hour and 30 minutes"
+        // E.g. "1:30" => "1 hour and 30 minutes".
         $hours = round($components[0]);
         $minutes = round($components[1]);
-    }
-    else {
-        // e.g. "1.5" => "1 hour and 30 minutes"
+    } else {
+        // E.g. "1.5" => "1 hour and 30 minutes."
         $hours = floor($duration);
         $minutes = round(($duration - floor($duration)) * 60);
     }
 
-    // Check if either minutes is out of bounds
+    // Check if either minutes is out of bounds.
     if ($minutes >= 60) {
         return $string;
     }
 
     if (1 == $hours) {
         $string = get_string('onehour', 'onetoone');
-    } elseif ($hours > 1) {
+    } else if ($hours > 1) {
         $string = get_string('xhours', 'onetoone', $hours);
     }
 
-    // Insert separator between hours and minutes
+    // Insert separator between hours and minutes.
     if ($string != '') {
         $string .= ' ';
     }
 
     if (1 == $minutes) {
         $string .= get_string('oneminute', 'onetoone');
-    } elseif ($minutes > 0) {
+    } else if ($minutes > 0) {
         $string .= get_string('xminutes', 'onetoone', $minutes);
     }
 
@@ -240,7 +230,7 @@ function onetoone_format_duration($duration) {
 }
 
 /**
- * Converts minutes to hours
+ * Converts minutes to hours.
  */
 function onetoone_minutes_to_hours($minutes) {
 
@@ -252,26 +242,23 @@ function onetoone_minutes_to_hours($minutes) {
         $hours = floor($minutes / 60.0);
         $mins = $minutes - ($hours * 60.0);
         return "$hours:$mins";
-    }
-    else {
+    } else {
         return $minutes;
     }
 }
 
 /**
- * Converts hours to minutes
+ * Converts hours to minutes.
  */
-function onetoone_hours_to_minutes($hours)
-{
+function onetoone_hours_to_minutes($hours) {
     $components = explode(':', $hours);
     if ($components and count($components) > 1) {
-        // e.g. "1:45" => 105 minutes
+        // E.g. "1:45" => 105 minutes.
         $hours = $components[0];
         $minutes = $components[1];
         return $hours * 60.0 + $minutes;
-    }
-    else {
-        // e.g. "1.75" => 105 minutes
+    } else {
+        // E.g. "1.75" => 105 minutes.
         return round($hours * 60.0);
     }
 }
@@ -280,7 +267,6 @@ function onetoone_hours_to_minutes($hours)
  * Turn undefined manager messages into empty strings and deal with checkboxes
  */
 function onetoone_fix_settings($onetoone) {
-
     if (empty($onetoone->emailmanagerconfirmation)) {
         $onetoone->confirmationinstrmngr = null;
     }
@@ -307,41 +293,40 @@ function onetoone_fix_settings($onetoone) {
  * return the id number of the new instance.
  */
 function onetoone_add_instance($onetoone) {
-    //added by suman
-    
-    // CONFIRMATION MESSAGE
+    // Added by suman.
+    // CONFIRMATION MESSAGE.
     $onetoone->confirmationsubject = get_string('setting:defaultconfirmationsubjectdefault', 'onetoone');
-    $onetoone->confirmationinstrmngr =  get_string('setting:defaultconfirmationinstrmngrdefault', 'onetoone');
+    $onetoone->confirmationinstrmngr = get_string('setting:defaultconfirmationinstrmngrdefault', 'onetoone');
     $onetoone->confirmationmessage = get_string('setting:defaultconfirmationmessagedefault', 'onetoone');
-   
-    //CANCEL
-    $onetoone->cancellationsubject	= get_string('setting:defaultcancellationsubjectdefault', 'onetoone');
+
+    // CANCEL.
+    $onetoone->cancellationsubject = get_string('setting:defaultcancellationsubjectdefault', 'onetoone');
     $onetoone->cancellationinstrmngr = get_string('setting:defaultcancellationinstrmngrdefault', 'onetoone');
     $onetoone->cancellationmessage = get_string('setting:defaultcancellationmessagedefault', 'onetoone');
-    
-    //WAITLIST
+
+    // WAITLIST.
     $onetoone->waitlistedsubject = get_string('setting:defaultwaitlistedsubjectdefault', 'onetoone');
-    $onetoone-> waitlistedmessage = get_string('setting:defaultwaitlistedmessagedefault', 'onetoone');
-    
-    //REMINDER
-    $onetoone-> remindersubject	 = get_string('setting:defaultremindersubjectdefault', 'onetoone');
-    $onetoone-> reminderinstrmngr = get_string('setting:defaultreminderinstrmngrdefault', 'onetoone');
-    $onetoone-> remindermessage	= get_string('setting:defaultremindermessagedefault', 'onetoone');
-    $onetoone-> reminderperiod = 2;
-    
+    $onetoone->waitlistedmessage = get_string('setting:defaultwaitlistedmessagedefault', 'onetoone');
+
+    // REMINDER.
+    $onetoone->remindersubject = get_string('setting:defaultremindersubjectdefault', 'onetoone');
+    $onetoone->reminderinstrmngr = get_string('setting:defaultreminderinstrmngrdefault', 'onetoone');
+    $onetoone->remindermessage = get_string('setting:defaultremindermessagedefault', 'onetoone');
+    $onetoone->reminderperiod = 2;
+
     $onetoone->requestsubject = get_string('setting:defaultrequestsubjectdefault', 'onetoone');
-    $onetoone->requestinstrmngr	= get_string('setting:defaultrequestinstrmngrdefault', 'onetoone');
+    $onetoone->requestinstrmngr = get_string('setting:defaultrequestinstrmngrdefault', 'onetoone');
     $onetoone->requestmessage = get_string('setting:defaultrequestmessagedefault', 'onetoone');
-            
+
     global $DB;
     $onetoone->timemodified = time();
     onetoone_fix_settings($onetoone);
-    
+
     if ($onetoone->id = $DB->insert_record('onetoone', $onetoone)) {
         onetoone_grade_item_update($onetoone);
     }
 
-    // Update any calendar entries
+    // Update any calendar entries.
     if ($sessions = onetoone_get_sessions($onetoone->id)) {
         foreach ($sessions as $session) {
             onetoone_update_calendar_entries($session, $onetoone);
@@ -367,7 +352,7 @@ function onetoone_update_instance($onetoone, $instanceflag = true) {
     if ($return = $DB->update_record('onetoone', $onetoone)) {
         onetoone_grade_item_update($onetoone);
 
-        //update any calendar entries
+        // Update any calendar entries.
         if ($sessions = onetoone_get_sessions($onetoone->id)) {
             foreach ($sessions as $session) {
                 onetoone_update_calendar_entries($session, $onetoone);
@@ -377,7 +362,7 @@ function onetoone_update_instance($onetoone, $instanceflag = true) {
     return $return;
 }
 
-/**
+/*
  * Given an ID of an instance of this module, this function will
  * permanently delete the instance and any data that depends on it.
  */
@@ -411,10 +396,11 @@ function onetoone_delete_instance($id) {
     onetoone = ? ))
     ", array($onetoone->id));
 
-    $DB->delete_records_select('onetoone_signups', "sessionid IN (SELECT id FROM {onetoone_sessions} WHERE onetoone = ?)", array($onetoone->id));
+    $DB->delete_records_select('onetoone_signups', "sessionid IN (SELECT id FROM {onetoone_sessions} WHERE onetoone = ?)",
+            array($onetoone->id));
 
-    //$DB->delete_records_select('onetoone_sessions_dates', "sessionid in (SELECT id FROM {onetoone_sessions} WHERE onetoone = ?)", array($onetoone->id));
-
+    //...$DB->delete_records_select('onetoone_sessions_dates', "sessionid in 
+    //   (SELECT id FROM {onetoone_sessions} WHERE onetoone = ?)", array($onetoone->id.
     $DB->delete_records('onetoone_sessions', array('onetoone' => $onetoone->id));
 
     $DB->delete_records('onetoone', array('id' => $onetoone->id));
@@ -428,44 +414,43 @@ function onetoone_delete_instance($id) {
     return $result;
 }
 
-/**
+/*
  * Prepare the user data to go into the database.
  */
 function onetoone_cleanup_session_data($session) {
-
-    // Convert hours (expressed like "1.75" or "2" or "3.5") to minutes
+    // Convert hours (expressed like "1.75" or "2" or "3.5") to minutes.
     $session->duration = onetoone_hours_to_minutes($session->duration);
 
-    // Only numbers allowed here
+    // Only numbers allowed here.
     $session->capacity = preg_replace('/[^\d]/', '', $session->capacity);
     $MAX_CAPACITY = 100000;
     if ($session->capacity < 1) {
         $session->capacity = 1;
-    }
-    elseif ($session->capacity > $MAX_CAPACITY) {
+    } else if ($session->capacity > $MAX_CAPACITY) {
         $session->capacity = $MAX_CAPACITY;
     }
 
-    // Get the decimal point separator
+    // Get the decimal point separator.
     setlocale(LC_MONETARY, get_string('locale', 'langconfig'));
     $localeinfo = localeconv();
     $symbol = $localeinfo['decimal_point'];
     if (empty($symbol)) {
-        // Cannot get the locale information, default to en_US.UTF-8
+        // Cannot get the locale information, default to en_US.UTF-8.
         $symbol = '.';
     }
 
-    // Only numbers or decimal separators allowed here
-    //commented by suman
-//    $session->normalcost = round(preg_replace("/[^\d$symbol]/", '', $session->normalcost));
-//    $session->discountcost = round(preg_replace("/[^\d$symbol]/", '', $session->discountcost));
+    // Only numbers or decimal separators allowed here.
+    // Commented by suman.
+
+    /*
+    * $session->normalcost = round(preg_replace("/[^\d$symbol]/", '', $session->normalcost));.
+    * $session->discountcost = round(preg_replace("/[^\d$symbol]/", '', $session->discountcost))
+    */
 
     return $session;
 }
 
-/**
- * Create a new entry in the onetoone_sessions table
- */
+// Create a new entry in the onetoone_sessions table.
 function onetoone_add_session($session) {
     global $USER, $DB;
 
@@ -476,36 +461,40 @@ function onetoone_add_session($session) {
 
     $session->id = $DB->insert_record('onetoone_sessions', $session);
 
-    /*if (empty($sessiondates)) {
-        // Insert a dummy date record
-        $date = new stdClass();
-        $date->sessionid = $session->id;
-        $date->timestart = 0;
-        $date->timefinish = 0;
-
-        $DB->insert_record('onetoone_sessions_dates', $date);
-    }
-    else {
-        foreach ($sessiondates as $date) {
+    /*
+     * if (empty($sessiondates)) {
+            // Insert a dummy date record
+            $date = new stdClass();
             $date->sessionid = $session->id;
+            $date->timestart = 0;
+            $date->timefinish = 0;
 
             $DB->insert_record('onetoone_sessions_dates', $date);
         }
-    }*/
+        else {
+            foreach ($sessiondates as $date) {
+                $date->sessionid = $session->id;
 
-    //create any calendar entries
-   // $session->sessiondates = $sessiondates;
+                $DB->insert_record('onetoone_sessions_dates', $date);
+            }
+        }
+     */
+
+    /*
+     * Create any calendar entries
+     * $session->sessiondates = $sessiondates;
+     */
+
     onetoone_update_calendar_entries($session);
 
     return $session->id;
 }
 
-/**
- * Modify an entry in the onetoone_sessions table
- */
+    /*
+     * Modify an entry in the onetoone_sessions table
+     */
 function onetoone_update_session($session) {
     global $DB;
-
     $session->timemodified = time();
     $session = onetoone_cleanup_session_data($session);
     $transaction = $DB->start_delegated_transaction();
@@ -515,20 +504,20 @@ function onetoone_update_session($session) {
     return onetoone_update_attendees($session);
 }
 
-/**
- * Update calendar entries for a given session
- *
- * @param int $session ID of session to update event for
- * @param int $onetoone ID of onetoone activity (optional)
- */
-function onetoone_update_calendar_entries($session, $onetoone = null){
+    /*
+     * Update calendar entries for a given session
+     *
+     * @param int $session ID of session to update event for
+     * @param int $onetoone ID of onetoone activity (optional)
+     */
+function onetoone_update_calendar_entries($session, $onetoone = null) {
     global $USER, $DB;
 
     if (empty($onetoone)) {
         $onetoone = $DB->get_record('onetoone', array('id' => $session->onetoone));
     }
 
-    //remove from all calendars
+    // Remove from all calendars.
     onetoone_delete_user_calendar_events($session, 'booking');
     onetoone_delete_user_calendar_events($session, 'session');
     onetoone_remove_session_from_calendar($session, $onetoone->course);
@@ -538,9 +527,9 @@ function onetoone_update_calendar_entries($session, $onetoone = null){
         return true;
     }
 
-    //add to NEW calendartype
+    // Add to NEW calendartype.
     if ($onetoone->usercalentry) {
-    //get ALL enrolled/booked users
+        // Get ALL enrolled/booked users.
         $users  = onetoone_get_attendees($session->id);
         if (!in_array($USER->id, $users)) {
             onetoone_add_session_to_calendar($session, $onetoone, 'user', $USER->id, 'session');
@@ -566,37 +555,37 @@ function onetoone_update_calendar_entries($session, $onetoone = null){
  */
 function onetoone_update_attendees($session) {
     global $USER, $DB;
-
-    // Get onetoone
+    // Get onetoone.
     $onetoone = $DB->get_record('onetoone', array('id' => $session->onetoone));
 
-    // Get course
+    // Get course.
     $course = $DB->get_record('course', array('id' => $onetoone->course));
 
-    // Update user status'
+    // Update user status.'
     $users = onetoone_get_attendees($session->id);
 
     if ($users) {
-        // No/deleted session dates
+        // No/deleted session dates.
         if (empty($session->datetimeknown)) {
 
-            // Convert any bookings to waitlists
+            // Convert any bookings to waitlists.
             foreach ($users as $user) {
                 if ($user->statuscode == MDL_O2O_STATUS_BOOKED) {
 
-                    if (!onetoone_user_signup($session, $onetoone, $course, $user->discountcode, $user->notificationtype, MDL_O2O_STATUS_WAITLISTED, $user->id)) {
-                        // rollback_sql();
+                    if (!onetoone_user_signup($session, $onetoone, $course, $user->discountcode,
+                            $user->notificationtype, MDL_O2O_STATUS_WAITLISTED, $user->id)) {
+                        // Rollback_sql();.
                         return false;
                     }
                 }
             }
 
-        // Session dates exist
+            // Session dates exist.
         } else {
-            // Convert earliest signed up users to booked, and make the rest waitlisted
+            // Convert earliest signed up users to booked, and make the rest waitlisted.
             $capacity = $session->capacity;
 
-            // Count number of booked users
+            // Count number of booked users.
             $booked = 0;
             foreach ($users as $user) {
                 if ($user->statuscode == MDL_O2O_STATUS_BOOKED) {
@@ -604,7 +593,7 @@ function onetoone_update_attendees($session) {
                 }
             }
 
-            // If booked less than capacity, book some new users
+            // If booked less than capacity, book some new users.
             if ($booked < $capacity) {
                 foreach ($users as $user) {
                     if ($booked >= $capacity) {
@@ -613,8 +602,9 @@ function onetoone_update_attendees($session) {
 
                     if ($user->statuscode == MDL_O2O_STATUS_WAITLISTED) {
 
-                        if (!onetoone_user_signup($session, $onetoone, $course, $user->discountcode, $user->notificationtype, MDL_O2O_STATUS_BOOKED, $user->id)) {
-                            // rollback_sql();
+                        if (!onetoone_user_signup($session, $onetoone, $course, $user->discountcode,
+                                $user->notificationtype, MDL_O2O_STATUS_BOOKED, $user->id)) {
+                            // Rollback_sql();.
                             return false;
                         }
                         $booked++;
@@ -628,7 +618,7 @@ function onetoone_update_attendees($session) {
 }
 
 /**
- * Return an array of all onetoone activities in the current course
+ * Return an array of all onetoone activities in the current course.
  */
 function onetoone_get_onetoone_menu() {
     global $CFG, $DB;
@@ -636,7 +626,7 @@ function onetoone_get_onetoone_menu() {
                                             FROM {course} c, {onetoone} f
                                             WHERE c.id = f.course
                                             ORDER BY c.shortname, f.name")) {
-        $i=1;
+        $i = 1;
         foreach ($onetoones as $onetoone) {
             $f = $onetoone->id;
             $onetoonemenu[$f] = $onetoone->shortname.' --- '.$onetoone->name;
@@ -663,7 +653,7 @@ function onetoone_delete_session($session) {
 
     $onetoone = $DB->get_record('onetoone', array('id' => $session->onetoone));
 
-    // Cancel user signups (and notify users)
+    // Cancel user signups (and notify users).
     $signedupusers = $DB->get_records_sql(
         "
             SELECT DISTINCT
@@ -683,30 +673,29 @@ function onetoone_delete_session($session) {
         foreach ($signedupusers as $user) {
             if (onetoone_user_cancel($session, $user->userid, true)) {
                 onetoone_send_cancellation_notice($onetoone, $session, $user->userid);
-            }
-            else {
-                return false; // Cannot rollback since we notified users already
+            } else {
+                return false; // Cannot rollback since we notified users already.
             }
         }
     }
 
     $transaction = $DB->start_delegated_transaction();
 
-    // Remove entries from the teacher calendars
+    // Remove entries from the teacher calendars.
     $DB->delete_records_select('event', "modulename = 'onetoone' AND
                                          eventtype = 'onetoonesession' AND
                                          instance = ? AND description LIKE ?",
                                          array($onetoone->id, "%attendees.php?s={$session->id}%"));
 
     if ($onetoone->showoncalendar == O2O_CAL_COURSE) {
-        // Remove entry from course calendar
+        // Remove entry from course calendar.
         onetoone_remove_session_from_calendar($session, $onetoone->course);
     } else if ($onetoone->showoncalendar == O2O_CAL_SITE) {
-        // Remove entry from site-wide calendar
+        // Remove entry from site-wide calendar.
         onetoone_remove_session_from_calendar($session, SITEID);
     }
 
-    // Delete session details
+    // Delete session details.
     $DB->delete_records('onetoone_sessions', array('id' => $session->id));
 
     $DB->delete_records_select(
@@ -757,23 +746,22 @@ function onetoone_email_substitutions($msg, $onetoonename, $reminderperiod, $use
     }
 
     if ($data->datetimeknown) {
-        // Scheduled session
+        // Scheduled session.
         $sessiondate = userdate($data->timestart, get_string('strftimedate'));
         $starttime = userdate($data->timestart, get_string('strftimetime'));
         $finishtime = userdate($data->timefinish, get_string('strftimetime'));
 
         $alldates = '';
-        //foreach ($data->sessiondates as $date) {
-            if ($alldates != '') {
-                $alldates .= "\n";
-            }
-            $alldates .= userdate($data->timestart, get_string('strftimedate')).', ';
-            $alldates .= userdate($data->timestart, get_string('strftimetime')).
-                ' to '.userdate($data->timefinish, get_string('strftimetime'));
-       // }
-    }
-    else {
-        // Wait-listed session
+        /*foreach ($data->sessiondates as $date) {.*/
+        if ($alldates != '') {
+            $alldates .= "\n";
+        }
+        $alldates .= userdate($data->timestart, get_string('strftimedate')).', ';
+        $alldates .= userdate($data->timestart, get_string('strftimetime')).
+            ' to '.userdate($data->timefinish, get_string('strftimetime'));
+        /* } */
+    } else {
+        // Wait-listed session.
         $sessiondate = get_string('unknowndate', 'onetoone');
         $alldates    = get_string('unknowndate', 'onetoone');
         $starttime   = get_string('unknowntime', 'onetoone');
@@ -791,16 +779,16 @@ function onetoone_email_substitutions($msg, $onetoonename, $reminderperiod, $use
     $msg = str_replace(get_string('placeholder:duration', 'onetoone'), onetoone_format_duration($data->duration), $msg);
     if (empty($data->details)) {
         $msg = str_replace(get_string('placeholder:details', 'onetoone'), '', $msg);
-    }
-    else {
+    } else {
         $msg = str_replace(get_string('placeholder:details', 'onetoone'), html_to_text($data->details), $msg);
     }
     $msg = str_replace(get_string('placeholder:reminderperiod', 'onetoone'), $reminderperiod, $msg);
 
-    // Replace more meta data
-    $msg = str_replace(get_string('placeholder:attendeeslink', 'onetoone'), $CFG->wwwroot.'/mod/onetoone/attendees.php?s='.$data->id, $msg);
+    // Replace more meta data.
+    $msg = str_replace(get_string('placeholder:attendeeslink', 'onetoone'),
+            $CFG->wwwroot.'/mod/onetoone/attendees.php?s='.$data->id, $msg);
 
-    // Custom session fields (they look like "session:shortname" in the templates)
+    // Custom session fields (they look like "session:shortname" in the templates).
     $customfields = onetoone_get_session_customfields();
     $customdata = $DB->get_records('onetoone_session_data', array('sessionid' => $data->id), '', 'fieldid, data');
     foreach ($customfields as $field) {
@@ -813,7 +801,6 @@ function onetoone_email_substitutions($msg, $onetoonename, $reminderperiod, $use
                 $value = $customdata[$field->id]->data;
             }
         }
-
         $msg = str_replace($placeholder, $value, $msg);
     }
 
@@ -825,7 +812,7 @@ function onetoone_email_substitutions($msg, $onetoonename, $reminderperiod, $use
  * Finds all onetoone notifications that have yet to be mailed out, and mails them.
  */
 function onetoone_cron() {
-    global $CFG, $USER,$DB;
+    global $CFG, $USER, $DB;
 
     $signupsdata = onetoone_get_unmailed_reminders();
     if (!$signupsdata) {
@@ -837,44 +824,45 @@ function onetoone_cron() {
 
     foreach ($signupsdata as $signupdata) {
         if (onetoone_has_session_started($signupdata, $timenow)) {
-            // Too late, the session already started
-            // Mark the reminder as being sent already
+            // Too late, the session already started.
+            // Mark the reminder as being sent already.
             $newsubmission = new stdClass();
             $newsubmission->id = $signupdata->id;
-            $newsubmission->mailedreminder = 1; // magic number to show that it was not actually sent
+            $newsubmission->mailedreminder = 1; // Magic number to show that it was not actually sent.
             if (!$DB->update_record('onetoone_signups', $newsubmission)) {
                 echo "ERROR: could not update mailedreminder for submission ID $signupdata->id";
             }
             continue;
         }
 
-        //$earlieststarttime = $signupdata->sessiondates[0]->timestart;
+        /*$earlieststarttime = $signupdata->sessiondates[0]->timestart;*/
+
         $earlieststarttime = $signupdata->timestart;
-        //foreach ($signupdata->sessiondates as $date) {
-            if ($signupdata->timestart < $earlieststarttime) {
-                $earlieststarttime = $signupdata->timestart;
-            }
-        //}
+        /*foreach ($signupdata->sessiondates as $date) {*/
+        if ($signupdata->timestart < $earlieststarttime) {
+            $earlieststarttime = $signupdata->timestart;
+        }
+        /*}*/
 
         $reminderperiod = $signupdata->reminderperiod;
 
-        // Convert the period from business days (no weekends) to calendar days
-        for ($reminderday = 0; $reminderday < $reminderperiod + 1; $reminderday++ ) {
+        // Convert the period from business days (no weekends) to calendar days.
+        for ($reminderday = 0; $reminderday < $reminderperiod + 1; $reminderday++) {
             $reminderdaytime = $earlieststarttime - ($reminderday * 24 * 3600);
-            //use %w instead of %u for Windows compatability
+            // Use %w instead of %u for Windows compatability.
             $reminderdaycheck = userdate($reminderdaytime, '%w');
-            // note w runs from Sun=0 to Sat=6
+            // Note w runs from Sun=0 to Sat=6.
             if ($reminderdaycheck == 0 || $reminderdaycheck == 6) {
-                // Saturdays and Sundays are not included in the
-                // reminder period as entered by the user, extend
-                // that period by 1
+                // Saturdays and Sundays are not included in the.
+                // Reminder period as entered by the user, extend.
+                // That period by 1.
                 $reminderperiod++;
             }
         }
 
         $remindertime = $earlieststarttime - ($reminderperiod * 24 * 3600);
         if ($timenow < $remindertime) {
-            // Too early to send reminder
+            // Too early to send reminder.
             continue;
         }
 
@@ -882,8 +870,8 @@ function onetoone_cron() {
             continue;
         }
 
-        // Hack to make sure that the timezone and languages are set properly in emails
-        // (i.e. it uses the language and timezone of the recipient of the email)
+        // Hack to make sure that the timezone and languages are set properly in emails.
+        // (i.e. it uses the language and timezone of the recipient of the email).
         $USER->lang = $user->lang;
         $USER->timezone = $user->timezone;
 
@@ -905,7 +893,7 @@ function onetoone_cron() {
         }
 
         if (empty($posttext)) {
-            // The reminder message is not set, don't send anything
+            // The reminder message is not set, don't send anything.
             continue;
         }
 
@@ -913,11 +901,11 @@ function onetoone_cron() {
                                                       $user, $signupdata, $signupdata->sessionid);
         $posttext = onetoone_email_substitutions($posttext, $signupdata->onetoonename, $signupdata->reminderperiod,
                                                    $user, $signupdata, $signupdata->sessionid);
-        $posttextmgrheading = onetoone_email_substitutions($posttextmgrheading, $signupdata->onetoonename, $signupdata->reminderperiod,
-                                                             $user, $signupdata, $signupdata->sessionid);
+        $posttextmgrheading = onetoone_email_substitutions($posttextmgrheading, $signupdata->onetoonename,
+                $signupdata->reminderperiod, $user, $signupdata, $signupdata->sessionid);
 
-        $posthtml = ''; // FIXME
-        if ($fromaddress = get_config(NULL, 'onetoone_fromaddress')) {
+        $posthtml = ''; // FIXME.
+        if ($fromaddress = get_config(null, 'onetoone_fromaddress')) {
             $from = new stdClass();
             $from->maildisplay = true;
             $from->email = $fromaddress;
@@ -936,7 +924,7 @@ function onetoone_cron() {
             }
 
             if (empty($posttextmgrheading)) {
-                continue; // no manager message set
+                continue; // No manager message set.
             }
 
             $managertext = $posttextmgrheading.$posttext;
@@ -944,22 +932,21 @@ function onetoone_cron() {
             $manager->email = onetoone_get_manageremail($user->id);
 
             if (empty($manager->email)) {
-                continue; // don't know who the manager is
+                continue; // Don't know who the manager is.
             }
 
-            // Send email to mamager
+            // Send email to mamager.
             if (email_to_user($manager, $from, $postsubject, $managertext, $posthtml)) {
                 echo "\n".get_string('sentremindermanager', 'onetoone').": $user->firstname $user->lastname $manager->email";
-            }
-            else {
+            } else {
                 $errormsg = array();
                 $errormsg['submissionid'] = $signupdata->id;
                 $errormsg['userid'] = $user->id;
                 $errormsg['manageremail'] = $manager->email;
-                echo get_string('error:cronprefix', 'onetoone').' '.get_string('error:cannotemailmanager', 'onetoone', $errormsg)."\n";
+                echo get_string('error:cronprefix', 'onetoone').' '
+                        .get_string('error:cannotemailmanager', 'onetoone', $errormsg)."\n";
             }
-        }
-        else {
+        } else {
             $errormsg = array();
             $errormsg['submissionid'] = $signupdata->id;
             $errormsg['userid'] = $user->id;
@@ -972,7 +959,7 @@ function onetoone_cron() {
     return true;
 }
 
-/**
+/*
  * Returns true if the session has started, that is if one of the
  * session dates is in the past.
  *
@@ -981,7 +968,7 @@ function onetoone_cron() {
  */
 function onetoone_has_session_started($session, $timenow) {
     if (!$session->datetimeknown) {
-        return false; // no date set
+        return false; // No date set.
     }
     if ($session->timestart < $timenow) {
         return true;
@@ -1002,7 +989,6 @@ function onetoone_is_session_in_progress($session, $timenow) {
     if ($session->timefinish > $timenow && $session->timestart < $timenow) {
         return true;
     }
-    
     return false;
 }
 
@@ -1016,7 +1002,7 @@ function onetoone_get_session($sessionid) {
     $session = $DB->get_record('onetoone_sessions', array('id' => $sessionid));
 
     if ($session) {
-        //$session->sessiondates = onetoone_get_session_dates($sessionid);
+        /* $session->sessiondates = onetoone_get_session_dates($sessionid) */
         $session->duration = onetoone_minutes_to_hours($session->duration);
     }
 
@@ -1030,7 +1016,7 @@ function onetoone_get_session($sessionid) {
  * @param string $location location filter (optional)
  */
 function onetoone_get_sessions($onetooneid, $location='') {
-    global $CFG,$DB;
+    global $CFG, $DB;
 
     $fromclause = "FROM {onetoone_sessions} s";
     $locationwhere = '';
@@ -1050,7 +1036,7 @@ function onetoone_get_sessions($onetooneid, $location='') {
     if ($sessions) {
         foreach ($sessions as $key => $value) {
             $sessions[$key]->duration = onetoone_minutes_to_hours($sessions[$key]->duration);
-            //$sessions[$key]->sessiondates = onetoone_get_session_dates($value->id);
+            /* $sessions[$key]->sessiondates = onetoone_get_session_dates($value->id);*/
         }
     }
     return $sessions;
@@ -1071,10 +1057,10 @@ function onetoone_get_grade($userid, $courseid, $onetooneid) {
     $ret->grade = 0;
     $ret->dategraded = 0;
 
-    $grading_info = grade_get_grades($courseid, 'mod', 'onetoone', $onetooneid, $userid);
-    if (!empty($grading_info->items)) {
-        $ret->grade = $grading_info->items[0]->grades[$userid]->str_grade;
-        $ret->dategraded = $grading_info->items[0]->grades[$userid]->dategraded;
+    $gradingnfo = grade_get_grades($courseid, 'mod', 'onetoone', $onetooneid, $userid);
+    if (!empty($gradingnfo->items)) {
+        $ret->grade = $gradingnfo->items[0]->grades[$userid]->str_grade;
+        $ret->dategraded = $gradingnfo->items[0]->grades[$userid]->dategraded;
     }
 
     return $ret;
@@ -1088,7 +1074,7 @@ function onetoone_get_grade($userid, $courseid, $onetooneid) {
  * @return array
  */
 function onetoone_get_attendees($sessionid) {
-    global $CFG,$DB;
+    global $CFG, $DB;
     $records = $DB->get_records_sql("
         SELECT
             u.id,
@@ -1217,10 +1203,9 @@ function onetoone_get_userfields() {
             foreach ($fieldnames as $key => $obj) {
                 $userfields[$obj->shortname] = $obj->fullname;
             }
-        }
-        else {
+        } else {
             // Set default fields if the grade export patch is not
-            // detected (see MDL-17346)
+            // detected (see MDL-17346).
             $fieldnames = array('firstname', 'lastname', 'email', 'city',
                                 'idnumber', 'institution', 'department', 'address');
             foreach ($fieldnames as $shortname) {
@@ -1246,21 +1231,21 @@ function onetoone_download_attendance($onetoonename, $onetooneid, $location, $fo
 
     $dateformat = 0;
     if ('ods' === $format) {
-        // OpenDocument format (ISO/IEC 26300)
+        // OpenDocument format (ISO/IEC 26300).
         require_once($CFG->dirroot.'/lib/odslib.class.php');
         $downloadfilename .= '.ods';
         $workbook = new MoodleODSWorkbook('-');
     } else {
-        // Excel format
+        // Excel format.
         require_once($CFG->dirroot.'/lib/excellib.class.php');
         $downloadfilename .= '.xls';
         $workbook = new MoodleExcelWorkbook('-');
-        $dateformat =$workbook->add_format();
-        $dateformat->set_num_format('d mmm yy'); // TODO: use format specified in language pack
+        $dateformat = $workbook->add_format();
+        $dateformat->set_num_format('d mmm yy'); // TODO: use format specified in language pack.
     }
 
     $workbook->send($downloadfilename);
-    $worksheet =$workbook->add_worksheet('attendance');
+    $worksheet = $workbook->add_worksheet('attendance');
     onetoone_write_worksheet_header($worksheet);
     onetoone_write_activity_attendance($worksheet, 1, $onetooneid, $location, '', '', $dateformat);
     $workbook->close();
@@ -1273,9 +1258,8 @@ function onetoone_download_attendance($onetoonename, $onetooneid, $location, $fo
  * @param object $worksheet  The worksheet to modify (passed by reference)
  * @returns integer The index of the next column
  */
-function onetoone_write_worksheet_header(&$worksheet)
-{
-    $pos=0;
+function onetoone_write_worksheet_header(&$worksheet) {
+    $pos = 0;
     $customfields = onetoone_get_session_customfields();
     foreach ($customfields as $field) {
         if (!empty($field->showinsummary)) {
@@ -1322,8 +1306,7 @@ function onetoone_write_worksheet_header(&$worksheet)
  * @returns integer Index of the last row written
  */
 function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetooneid, $location,
-                                              $coursename, $activityname, $dateformat)
-{
+                                              $coursename, $activityname, $dateformat) {
     global $CFG, $DB;
 
     $trainerroles = onetoone_get_trainer_roles();
@@ -1339,7 +1322,7 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
         $locationparam = array($location);
     }
 
-    // Fast version of "onetoone_get_attendees()" for all sessions
+    // Fast version of "onetoone_get_attendees()" for all sessions.
     $sessionsignups = array();
     $signups = $DB->get_records_sql("
         SELECT
@@ -1392,14 +1375,14 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
     ", array(MDL_O2O_STATUS_BOOKED, MDL_O2O_STATUS_WAITLISTED, $onetooneid, MDL_O2O_STATUS_APPROVED));
 
     if ($signups) {
-        // Get all grades at once
+        // Get all grades at once.
         $userids = array();
         foreach ($signups as $signup) {
             if ($signup->id > 0) {
                 $userids[] = $signup->id;
             }
         }
-        $grading_info = grade_get_grades(reset($signups)->courseid, 'mod', 'onetoone',
+        $gradingnfo = grade_get_grades(reset($signups)->courseid, 'mod', 'onetoone',
                                          $onetooneid, $userids);
 
         foreach ($signups as $signup) {
@@ -1413,15 +1396,14 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
                 }
             }
 
-            // Set grade
-            if (!empty($grading_info->items) and !empty($grading_info->items[0]->grades[$userid])) {
-                $signup->grade = $grading_info->items[0]->grades[$userid]->str_grade;
+            // Set grade.
+            if (!empty($gradingnfo->items) and !empty($gradingnfo->items[0]->grades[$userid])) {
+                $signup->grade = $gradingnfo->items[0]->grades[$userid]->str_grade;
             }
 
             $sessionsignups[$signup->sessionid][$signup->id] = $signup;
         }
     }
-  
     $sql = "SELECT s.id as dateid, s.id, s.datetimeknown, s.capacity,
                    s.duration, s.timestart, s.timefinish
                FROM {onetoone_sessions} s              
@@ -1429,10 +1411,8 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
                  s.onetoone = ?              
                     $locationcondition
                     ORDER BY s.datetimeknown, s.timestart";
-    
     $sessions = $DB->get_records_sql($sql, array_merge(array($onetooneid), $locationparam));
-    
-    $i = $i - 1; // will be incremented BEFORE each row is written
+    $i = $i - 1; // Will be incremented BEFORE each row is written.
 
     foreach ($sessions as $session) {
         $customdata = $DB->get_records('onetoone_session_data', array('sessionid' => $session->id), '', 'fieldid, data');
@@ -1445,12 +1425,11 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
         $sessiontrainers = onetoone_get_trainers($session->id);
 
         if ($session->datetimeknown) {
-            // Display only the first date
+            // Display only the first date.
             if (method_exists($worksheet, 'write_date')) {
-                // Needs the patch in MDL-20781
+                // Needs the patch in MDL-20781.
                 $sessiondate = (int)$session->timestart;
-            }
-            else {
+            } else {
                 $sessiondate = userdate($session->timestart, get_string('strftimedate', 'langconfig'));
             }
             $starttime   = userdate($session->timestart, get_string('strftimetime', 'langconfig'));
@@ -1458,8 +1437,7 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
 
             if ($session->timestart < $timenow) {
                 $status = get_string('sessionover', 'onetoone');
-            }
-            else {
+            } else {
                 $signupcount = 0;
                 if (!empty($sessionsignups[$session->id])) {
                     $signupcount = count($sessionsignups[$session->id]);
@@ -1475,12 +1453,12 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
 
         if (!empty($sessionsignups[$session->id])) {
             foreach ($sessionsignups[$session->id] as $attendee) {
-                $i++; $j=0;
+                $i++; $j = 0;
 
-                // Custom session fields
+                // Custom session fields.
                 foreach ($customsessionfields as $field) {
                     if (empty($field->showinsummary)) {
-                        continue; // skip
+                        continue; // Skip.
                     }
 
                     $data = '-';
@@ -1495,20 +1473,18 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
                 }
 
                 if (empty($sessiondate)) {
-                    $worksheet->write_string($i, $j++, $status); // session date
-                }
-                else {
+                    $worksheet->write_string($i, $j++, $status); // Session date.
+                } else {
                     if (method_exists($worksheet, 'write_date')) {
                         $worksheet->write_date($i, $j++, $sessiondate, $dateformat);
-                    }
-                    else {
+                    } else {
                         $worksheet->write_string($i, $j++, $sessiondate);
                     }
                 }
-                $worksheet->write_string($i,$j++,$starttime);
-                $worksheet->write_string($i,$j++,$finishtime);
-                $worksheet->write_number($i,$j++,(int)$session->duration);
-                $worksheet->write_string($i,$j++,$status);
+                $worksheet->write_string($i, $j++, $starttime);
+                $worksheet->write_string($i, $j++, $finishtime);
+                $worksheet->write_number($i, $j++, (int)$session->duration);
+                $worksheet->write_string($i, $j++, $status);
 
                 if ($trainerroles) {
                     foreach (array_keys($trainerroles) as $roleid) {
@@ -1519,8 +1495,7 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
                             }
 
                             $trainers = implode(', ', $trainers);
-                        }
-                        else {
+                        } else {
                             $trainers = '-';
                         }
 
@@ -1537,27 +1512,25 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
                     if ('firstaccess' == $shortname or 'lastaccess' == $shortname or
                         'lastlogin' == $shortname or 'currentlogin' == $shortname) {
 
-                            if (method_exists($worksheet, 'write_date')) {
-                                $worksheet->write_date($i, $j++, (int)$value, $dateformat);
-                            }
-                            else {
-                                $worksheet->write_string($i, $j++, userdate($value, get_string('strftimedate', 'langconfig')));
-                            }
+                        if (method_exists($worksheet, 'write_date')) {
+                            $worksheet->write_date($i, $j++, (int)$value, $dateformat);
+                        } else {
+                            $worksheet->write_string($i, $j++, userdate($value, get_string('strftimedate', 'langconfig')));
                         }
-                    else {
-                        $worksheet->write_string($i,$j++,$value);
+                    } else {
+                        $worksheet->write_string($i, $j++, $value);
                     }
                 }
-                $worksheet->write_string($i,$j++,$attendee->grade);
+                $worksheet->write_string($i, $j++, $attendee->grade);
 
-                if (method_exists($worksheet,'write_date')) {
+                if (method_exists($worksheet, 'write_date')) {
                     $worksheet->write_date($i, $j++, (int)$attendee->timecreated, $dateformat);
                 } else {
                     $signupdate = userdate($attendee->timecreated, get_string('strftimedatetime', 'langconfig'));
                     if (empty($signupdate)) {
                         $signupdate = '-';
                     }
-                    $worksheet->write_string($i,$j++, $signupdate);
+                    $worksheet->write_string($i, $j++, $signupdate);
                 }
 
                 if (!empty($coursename)) {
@@ -1567,15 +1540,14 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
                     $worksheet->write_string($i, $j++, $activityname);
                 }
             }
-        }
-        else {
-            // no one is sign-up, so let's just print the basic info
-            $i++; $j=0;
+        } else {
+            // No one is sign-up, so let's just print the basic info.
+            $i++; $j = 0;
 
-            // Custom session fields
+            // Custom session fields.
             foreach ($customsessionfields as $field) {
                 if (empty($field->showinsummary)) {
-                    continue; // skip
+                    continue; // Skip.
                 }
 
                 $data = '-';
@@ -1590,24 +1562,22 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
             }
 
             if (empty($sessiondate)) {
-                $worksheet->write_string($i, $j++, $status); // session date
-            }
-            else {
+                $worksheet->write_string($i, $j++, $status); // Session date.
+            } else {
                 if (method_exists($worksheet, 'write_date')) {
                     $worksheet->write_date($i, $j++, $sessiondate, $dateformat);
-                }
-                else {
+                } else {
                     $worksheet->write_string($i, $j++, $sessiondate);
                 }
             }
-            $worksheet->write_string($i,$j++,$starttime);
-            $worksheet->write_string($i,$j++,$finishtime);
-            $worksheet->write_number($i,$j++,(int)$session->duration);
-            $worksheet->write_string($i,$j++,$status);
+            $worksheet->write_string($i, $j++, $starttime);
+            $worksheet->write_string($i, $j++, $finishtime);
+            $worksheet->write_number($i, $j++, (int)$session->duration);
+            $worksheet->write_string($i, $j++, $status);
             foreach ($userfields as $unused) {
-                $worksheet->write_string($i,$j++,'-');
+                $worksheet->write_string($i, $j++, '-');
             }
-            $worksheet->write_string($i,$j++,'-');
+            $worksheet->write_string($i, $j++, '-');
 
             if (!empty($coursename)) {
                 $worksheet->write_string($i, $j++, $coursename);
@@ -1628,11 +1598,10 @@ function onetoone_write_activity_attendance(&$worksheet, $startingrow, $onetoone
  *
  * @param array $fieldstoinclude Limit the fields returned/cached to these ones (optional)
  */
-function onetoone_get_user_customfields($userid, $fieldstoinclude=false)
-{
+function onetoone_get_user_customfields($userid, $fieldstoinclude=false) {
     global $CFG, $DB;
 
-    // Cache all lookup
+    // Cache all lookup.
     static $customfields = null;
     if (null == $customfields) {
         $customfields = array();
@@ -1662,7 +1631,7 @@ function onetoone_get_user_customfields($userid, $fieldstoinclude=false)
 }
 
 /**
- * Return list of marked submissions that have not been mailed out for currently enrolled students
+ * Return list of marked submissions that have not been mailed out for currently enrolled students.
  */
 function onetoone_get_unmailed_reminders() {
     global $CFG, $DB;
@@ -1700,7 +1669,9 @@ function onetoone_get_unmailed_reminders() {
     if ($submissions) {
         foreach ($submissions as $key => $value) {
             $submissions[$key]->duration = onetoone_minutes_to_hours($submissions[$key]->duration);
-            //$submissions[$key]->sessiondates = onetoone_get_session_dates($value->sessionid);
+            /*
+             * $submissions[$key]->sessiondates = onetoone_get_session_dates($value->sessionid);
+             */
         }
     }
 
@@ -1728,7 +1699,7 @@ function onetoone_user_signup($session, $onetoone, $course, $discountcode,
 
     global $CFG, $DB;
 
-    // Get user id
+    // Get user id.
     if (!$userid) {
         global $USER;
         $userid = $USER->id;
@@ -1737,11 +1708,11 @@ function onetoone_user_signup($session, $onetoone, $course, $discountcode,
     $return = false;
     $timenow = time();
 
-    // Check to see if a signup already exists
+    // Check to see if a signup already exists.
     if ($existingsignup = $DB->get_record('onetoone_signups', array('sessionid' => $session->id, 'userid' => $userid))) {
         $usersignup = $existingsignup;
     } else {
-        // Otherwise, prepare a signup object
+        // Otherwise, prepare a signup object.
         $usersignup = new stdclass;
         $usersignup->sessionid = $session->id;
         $usersignup->userid = $userid;
@@ -1755,62 +1726,64 @@ function onetoone_user_signup($session, $onetoone, $course, $discountcode,
         $usersignup->discountcode = null;
     }
 
- //   begin_sql();
+    //   Begin_sql();.
 
-    // Update/insert the signup record
+    // Update/insert the signup record.
     if (!empty($usersignup->id)) {
-        $success =  $DB->update_record('onetoone_signups', $usersignup);
-        
+        $success = $DB->update_record('onetoone_signups', $usersignup);
     } else {
-        $usersignup->id =  $DB->insert_record('onetoone_signups', $usersignup);
+        $usersignup->id = $DB->insert_record('onetoone_signups', $usersignup);
         $success = (bool)$usersignup->id;
-   
+
     }
 
     if (!$success) {
-        //rollback_sql();
+        // Rollback_sql();.
         print_error('error:couldnotupdateo2orecord', 'onetoone');
         return false;
     }
 
-    // Work out which status to use
+    // Work out which status to use.
 
-    // If approval not required
+    // If approval not required.
     if (!$onetoone->approvalreqd) {
-        $new_status = $statuscode;
+        $newstatus = $statuscode;
     } else {
-        // If approval required
+        // If approval required.
 
-        // Get current status (if any)
-        $current_status =  $DB->get_field('onetoone_signups_status', 'statuscode', array('signupid' => $usersignup->id, 'superceded' => 0));
+        // Get current status (if any).
+        $currentstatus = $DB->get_field('onetoone_signups_status', 'statuscode',
+                array('signupid' => $usersignup->id, 'superceded' => 0));
 
-        // If approved, then no problem
-        if ($current_status == MDL_O2O_STATUS_APPROVED) {
-            $new_status = $statuscode;
+        // If approved, then no problem.
+        if ($currentstatus == MDL_O2O_STATUS_APPROVED) {
+            $newstatus = $statuscode;
         } else if ($session->datetimeknown) {
-        // Otherwise, send manager request
-            $new_status = MDL_O2O_STATUS_REQUESTED;
+            // Otherwise, send manager request.
+            $newstatus = MDL_O2O_STATUS_REQUESTED;
         } else {
-            $new_status = MDL_O2O_STATUS_WAITLISTED;
+            $newstatus = MDL_O2O_STATUS_WAITLISTED;
         }
     }
 
-    // Update status
-    if (!onetoone_update_signup_status($usersignup->id, $new_status, $userid)) {
-        //rollback_sql();
+    // Update status.
+    if (!onetoone_update_signup_status($usersignup->id, $newstatus, $userid)) {
+        /*
+         * rollback_sql();.
+         */
         print_error('error:f2ffailedupdatestatus', 'onetoone');
         return false;
     }
 
-    // Add to user calendar -- if onetoone usercalentry is set to true
+    // Add to user calendar -- if onetoone usercalentry is set to true.
     if ($onetoone->usercalentry) {
-        if (in_array($new_status, array(MDL_O2O_STATUS_BOOKED, MDL_O2O_STATUS_WAITLISTED))) {
+        if (in_array($newstatus, array(MDL_O2O_STATUS_BOOKED, MDL_O2O_STATUS_WAITLISTED))) {
             onetoone_add_session_to_calendar($session, $onetoone, 'user', $userid, 'booking');
         }
     }
 
-    // Course completion
-    if (in_array($new_status, array(MDL_O2O_STATUS_BOOKED, MDL_O2O_STATUS_WAITLISTED))) {
+    // Course completion.
+    if (in_array($newstatus, array(MDL_O2O_STATUS_BOOKED, MDL_O2O_STATUS_WAITLISTED))) {
 
         $completion = new completion_info($course);
         if ($completion->is_enabled()) {
@@ -1825,15 +1798,15 @@ function onetoone_user_signup($session, $onetoone, $course, $discountcode,
         }
     }
 
-    // If session has already started, do not send a notification
+    // If session has already started, do not send a notification.
     if (onetoone_has_session_started($session, $timenow)) {
         $notifyuser = false;
     }
 
-    // Send notification
+    // Send notification.
     if ($notifyuser) {
-        // If booked/waitlisted
-        switch ($new_status) {
+        // If booked/waitlisted.
+        switch ($newstatus) {
             case MDL_O2O_STATUS_BOOKED:
                 $error = onetoone_send_confirmation_notice($onetoone, $session, $userid, $notificationtype, false);
                 break;
@@ -1848,19 +1821,21 @@ function onetoone_user_signup($session, $onetoone, $course, $discountcode,
         }
 
         if (!empty($error)) {
-            // rollback_sql();
+            // Rollback_sql();.
             print_error($error, 'onetoone');
             return false;
         }
 
         if (!$DB->update_record('onetoone_signups', $usersignup)) {
-            //rollback_sql();
+            /*
+             * rollback_sql();
+             */
             print_error('error:couldnotupdateo2orecord', 'onetoone');
             return false;
         }
     }
 
-    //commit_sql();
+    // Commit_sql();.
     return true;
 }
 
@@ -1883,7 +1858,7 @@ function onetoone_send_request_notice($onetoone, $session, $userid) {
         return 'error:invaliduserid';
     }
 
-    if ($fromaddress = get_config(NULL, 'onetoone_fromaddress')) {
+    if ($fromaddress = get_config(null, 'onetoone_fromaddress')) {
         $from = new stdClass();
         $from->maildisplay = true;
         $from->email = $fromaddress;
@@ -1918,12 +1893,12 @@ function onetoone_send_request_notice($onetoone, $session, $userid) {
             $session->id
     );
 
-    // Send to user
+    // Send to user.
     if (!email_to_user($user, $from, $postsubject, $posttext)) {
         return 'error:cannotsendrequestuser';
     }
 
-    // Send to manager
+    // Send to manager.
     $user->email = $manageremail;
 
     if (!email_to_user($user, $from, $postsubject, $posttextmgrheading.$posttext)) {
@@ -1947,7 +1922,7 @@ function onetoone_send_request_notice($onetoone, $session, $userid) {
  * @returns integer ID of newly created signup status, or false
  *
  */
-function onetoone_update_signup_status($signupid, $statuscode, $createdby, $note='', $grade=NULL) {
+function onetoone_update_signup_status($signupid, $statuscode, $createdby, $note='', $grade=null) {
     global $DB;
     $timenow = time();
 
@@ -1964,8 +1939,8 @@ function onetoone_update_signup_status($signupid, $statuscode, $createdby, $note
     $transaction = $DB->start_delegated_transaction();
 
     if ($statusid = $DB->insert_record('onetoone_signups_status', $signupstatus)) {
-        // mark any previous signup_statuses as superceded
-        $where = "signupid = ? AND ( superceded = 0 OR superceded IS NULL ) AND id != ?";
+        // Mark any previous signup_statuses as superceded.
+        $where = "signupid = ? AND ( superceded = 0 OR superceded IS null ) AND id != ?";
         $whereparams = array($signupid, $statusid);
         $DB->set_field_select('onetoone_signups_status', 'superceded', 1, $where, $whereparams);
         $transaction->allow_commit();
@@ -1990,11 +1965,11 @@ function onetoone_user_cancel($session, $userid=false, $forcecancel=false, &$err
         $userid = $USER->id;
     }
 
-    // if $forcecancel is set, cancel session even if already occurred
-    // used by facetotoface_delete_session()
+    // If $forcecancel is set, cancel session even if already occurred.
+    // Used by facetotoface_delete_session().
     if (!$forcecancel) {
         $timenow = time();
-        // don't allow user to cancel a session that has already occurred
+        // Don't allow user to cancel a session that has already occurred.
         if (onetoone_has_session_started($session, $timenow)) {
             $errorstr = get_string('error:eventoccurred', 'onetoone');
             return false;
@@ -2039,20 +2014,20 @@ function onetoone_send_notice($postsubject, $posttext, $posttextmgrheading,
         return '';
     }
 
-    // If no notice type is defined (TEXT or ICAL)
+    // If no notice type is defined (TEXT or ICAL).
     if (!($notificationtype & MDL_O2O_BOTH)) {
-        // If none, make sure they at least get a text email
+        // If none, make sure they at least get a text email.
         $notificationtype |= MDL_O2O_TEXT;
     }
 
-    // If we are cancelling, check if ical cancellations are disabled
+    // If we are cancelling, check if ical cancellations are disabled.
     if (($notificationtype & MDL_O2O_CANCEL) &&
-        get_config(NULL, 'onetoone_disableicalcancel')) {
-        $notificationtype |= MDL_O2O_TEXT; // add a text notification
-        $notificationtype &= ~MDL_O2O_ICAL; // remove the iCalendar notification
+        get_config(null, 'onetoone_disableicalcancel')) {
+        $notificationtype |= MDL_O2O_TEXT; // Add a text notification.
+        $notificationtype &= ~MDL_O2O_ICAL; // Remove the iCalendar notification.
     }
 
-    // If we are sending an ical attachment, set file name
+    // If we are sending an ical attachment, set file name.
     if ($notificationtype & MDL_O2O_ICAL) {
         if ($notificationtype & MDL_O2O_INVITE) {
             $attachmentfilename = 'invite.ics';
@@ -2061,41 +2036,41 @@ function onetoone_send_notice($postsubject, $posttext, $posttextmgrheading,
         }
     }
 
-    // Do iCal attachement stuff
+    // Do iCal attachement stuff.
     $icalattachments = array();
     if ($notificationtype & MDL_O2O_ICAL) {
-        if (get_config(NULL, 'onetoone_oneemailperday')) {
-            // Keep track of all sessiondates
-            //$sessiondates = $session->sessiondates;
+        if (get_config(null, 'onetoone_oneemailperday')) {
+            // Keep track of all sessiondates.
+            /*$sessiondates = $session->sessiondates;.*/
 
-            //foreach ($sessiondates as $sessiondate) {
-                //$session->sessiondates = array($sessiondate); // one day at a time
+            /* foreach ($sessiondates as $sessiondate) {
+               $session->sessiondates = array($sessiondate); // one day at a time */
 
                 $filename = onetoone_get_ical_attachment($notificationtype, $onetoone, $session, $user);
                 $subject = onetoone_email_substitutions($postsubject, $onetoone->name, $onetoone->reminderperiod,
                                                           $user, $session, $session->id);
                 $body = onetoone_email_substitutions($posttext, $onetoone->name, $onetoone->reminderperiod,
                                                        $user, $session, $session->id);
-                $htmlbody = ''; // TODO
+                $htmlbody = ''; // TODO.
                 $icalattachments[] = array('filename' => $filename, 'subject' => $subject,
                                            'body' => $body, 'htmlbody' => $htmlbody);
-            //}
+            /*}*/
 
-            // Restore session dates
-            //$session->sessiondates = $sessiondates;
+            /* Restore session dates
+            $session->sessiondates = $sessiondates; */
         } else {
             $filename = onetoone_get_ical_attachment($notificationtype, $onetoone, $session, $user);
             $subject = onetoone_email_substitutions($postsubject, $onetoone->name, $onetoone->reminderperiod,
                                                       $user, $session, $session->id);
             $body = onetoone_email_substitutions($posttext, $onetoone->name, $onetoone->reminderperiod,
                                                    $user, $session, $session->id);
-            $htmlbody = ''; // FIXME
+            $htmlbody = ''; // FIXME.
             $icalattachments[] = array('filename' => $filename, 'subject' => $subject,
                                        'body' => $body, 'htmlbody' => $htmlbody);
         }
     }
 
-    // Fill-in the email placeholders
+    // Fill-in the email placeholders.
     $postsubject = onetoone_email_substitutions($postsubject, $onetoone->name, $onetoone->reminderperiod,
                                                   $user, $session, $session->id);
     $posttext = onetoone_email_substitutions($posttext, $onetoone->name, $onetoone->reminderperiod,
@@ -2104,8 +2079,8 @@ function onetoone_send_notice($postsubject, $posttext, $posttextmgrheading,
     $posttextmgrheading = onetoone_email_substitutions($posttextmgrheading, $onetoone->name, $onetoone->reminderperiod,
                                                          $user, $session, $session->id);
 
-    $posthtml = ''; // FIXME
-    if ($fromaddress = get_config(NULL, 'onetoone_fromaddress')) {
+    $posthtml = ''; // FIXME.
+    if ($fromaddress = get_config(null, 'onetoone_fromaddress')) {
         $from = new stdClass();
         $from->maildisplay = true;
         $from->email = $fromaddress;
@@ -2115,7 +2090,7 @@ function onetoone_send_notice($postsubject, $posttext, $posttextmgrheading,
 
     $usercheck = $DB->get_record('user', array('id' => $userid));
 
-    // Send email with iCal attachment
+    // Send email with iCal attachment.
     if ($notificationtype & MDL_O2O_ICAL) {
         foreach ($icalattachments as $attachment) {
             if (!email_to_user($user, $from, $attachment['subject'], $attachment['body'],
@@ -2127,27 +2102,27 @@ function onetoone_send_notice($postsubject, $posttext, $posttextmgrheading,
         }
     }
 
-    // Send plain text email
+    // Send plain text email.
     if ($notificationtype & MDL_O2O_TEXT) {
         if (!email_to_user($user, $from, $postsubject, $posttext, $posthtml)) {
             return 'error:cannotsendconfirmationuser';
         }
     }
 
-    // Manager notification
+    // Manager notification.
     $manageremail = onetoone_get_manageremail($userid);
     if (!empty($posttextmgrheading) and !empty($manageremail) and $session->datetimeknown) {
         $managertext = $posttextmgrheading.$posttext;
         $manager = $user;
         $manager->email = $manageremail;
 
-        // Leave out the ical attachments in the managers notification
+        // Leave out the ical attachments in the managers notification.
         if (!email_to_user($manager, $from, $postsubject, $managertext, $posthtml)) {
             return 'error:cannotsendconfirmationmanager';
         }
     }
 
-    // Third-party notification
+    // Third-party notification.
     if (!empty($onetoone->thirdparty) &&
         ($session->datetimeknown || !empty($onetoone->thirdpartywaitlist))) {
 
@@ -2156,7 +2131,7 @@ function onetoone_send_notice($postsubject, $posttext, $posttextmgrheading,
         foreach ($recipients as $recipient) {
             $thirdparty->email = trim($recipient);
 
-            // Leave out the ical attachments in the 3rd parties notification
+            // Leave out the ical attachments in the 3rd parties notification.
             if (!email_to_user($thirdparty, $from, $postsubject, $posttext, $posthtml)) {
                 return 'error:cannotsendconfirmationthirdparty';
             }
@@ -2186,12 +2161,12 @@ function onetoone_send_confirmation_notice($onetoone, $session, $userid, $notifi
         $postsubject = $onetoone->waitlistedsubject;
         $posttext = $onetoone->waitlistedmessage;
 
-        // Don't send an iCal attachement when we don't know the date!
-        $notificationtype |= MDL_O2O_TEXT; // add a text notification
-        $notificationtype &= ~MDL_O2O_ICAL; // remove the iCalendar notification
+        // Don't send an iCal attachement when we don't know the date!.
+        $notificationtype |= MDL_O2O_TEXT; // Add a text notification.
+        $notificationtype &= ~MDL_O2O_ICAL; // Remove the iCalendar notification.
     }
 
-    // Set invite bit
+    // Set invite bit.
     $notificationtype |= MDL_O2O_INVITE;
 
     return onetoone_send_notice($postsubject, $posttext, $posttextmgrheading,
@@ -2214,11 +2189,11 @@ function onetoone_send_cancellation_notice($onetoone, $session, $userid) {
     $posttext = $onetoone->cancellationmessage;
     $posttextmgrheading = $onetoone->cancellationinstrmngr;
 
-    // Lookup what type of notification to send
+    // Lookup what type of notification to send.
     $notificationtype = $DB->get_field('onetoone_signups', 'notificationtype',
                                   array('sessionid' => $session->id, 'userid' => $userid));
 
-    // Set cancellation bit
+    // Set cancellation bit.
     $notificationtype |= MDL_O2O_CANCEL;
 
     return onetoone_send_notice($postsubject, $posttext, $posttextmgrheading,
@@ -2252,9 +2227,8 @@ function onetoone_get_manageremail($userid) {
     $fieldid = $DB->get_field('user_info_field', 'id', array('shortname' => O2O_MDL_MANAGERSEMAIL_FIELD));
     if ($fieldid) {
         return $DB->get_field('user_info_data', 'data', array('userid' => $userid, 'fieldid' => $fieldid));
-    }
-    else {
-        return ''; // No custom field => no manager's email
+    } else {
+        return ''; // No custom field => no manager's email.
     }
 }
 
@@ -2263,10 +2237,10 @@ function onetoone_get_manageremail($userid) {
  */
 function onetoone_get_manageremailformat() {
 
-    $addressformat = get_config(NULL, 'onetoone_manageraddressformat');
+    $addressformat = get_config(null, 'onetoone_manageraddressformat');
 
     if (!empty($addressformat)) {
-        $readableformat = get_config(NULL, 'onetoone_manageraddressformatreadable');
+        $readableformat = get_config(null, 'onetoone_manageraddressformatreadable');
         return get_string('manageremailformat', 'onetoone', $readableformat);
     }
 
@@ -2281,7 +2255,7 @@ function onetoone_get_manageremailformat() {
  */
 function onetoone_check_manageremail($manageremail) {
 
-    $addressformat = get_config(NULL, 'onetoone_manageraddressformat');
+    $addressformat = get_config(null, 'onetoone_manageraddressformat');
 
     if (empty($addressformat) || strpos($manageremail, $addressformat)) {
         return true;
@@ -2304,36 +2278,40 @@ function onetoone_take_attendance($data) {
 
     $sessionid = $data->s;
 
-    // Load session
+    // Load session.
     if (!$session = onetoone_get_session($sessionid)) {
         error_log('O2O: Could not load onetoone session');
         return false;
     }
 
-    // Check onetoone has finished
+    // Check onetoone has finished.
     if ($session->datetimeknown && !onetoone_has_session_started($session, time())) {
         error_log('O2O: Can not take attendance for a session that has not yet started');
         return false;
     }
 
-    // Record the selected attendees from the user interface - the other attendees will need their grades set
-    // to zero, to indicate non attendance, but only the ticked attendees come through from the web interface.
-    // Hence the need for a diff
-    $selectedsubmissionids = array();
+    /*
+     * Record the selected attendees from the user interface - the other attendees will need their grades set
+     *  to zero, to indicate non attendance, but only the ticked attendees come through from the web interface.
+     * Hence the need for a diff
+     */
 
-    // FIXME: This is not very efficient, we should do the grade
-    // query outside of the loop to get all submissions for a
-    // given Face-to-face ID, then call
-    // onetoone_grade_item_update with an array of grade
-    // objects.
+    $selectedsubmissionids = array();
+    /*
+    * FIXME: This is not very efficient, we should do the grade
+    * query outside of the loop to get all submissions for a
+    * given One-to-one ID, then call
+    * onetoone_grade_item_update with an array of grade
+    * objects.
+    */
     foreach ($data as $key => $value) {
 
         $submissionidcheck = substr($key, 0, 13);
         if ($submissionidcheck == 'submissionid_') {
             $submissionid = substr($key, 13);
-            $selectedsubmissionids[$submissionid]=$submissionid;
+            $selectedsubmissionids[$submissionid] = $submissionid;
 
-            // Update status
+            // Update status.
             switch ($value) {
 
                 case MDL_O2O_STATUS_NO_SHOW:
@@ -2349,8 +2327,8 @@ function onetoone_take_attendance($data) {
                     break;
 
                 default:
-                    // This use has not had attendance set
-                    // Jump to the next item in the foreach loop
+                    // This use has not had attendance set.
+                    // Jump to the next item in the foreach loop.
                     continue 2;
             }
 
@@ -2375,7 +2353,7 @@ function onetoone_take_attendance($data) {
 function onetoone_approve_requests($data) {
     global $USER, $DB;
 
-    // Check request data
+    // Check request data.
     if (empty($data->requests) || !is_array($data->requests)) {
         error_log('O2O: No request data supplied');
         return false;
@@ -2383,41 +2361,41 @@ function onetoone_approve_requests($data) {
 
     $sessionid = $data->s;
 
-    // Load session
+    // Load session.
     if (!$session = onetoone_get_session($sessionid)) {
         error_log('O2O: Could not load onetoone session');
         return false;
     }
 
-    // Load onetoone
+    // Load onetoone.
     if (!$onetoone = $DB->get_record('onetoone', array('id' => $session->onetoone))) {
         error_log('O2O: Could not load onetoone instance');
         return false;
     }
 
-    // Load course
+    // Load course.
     if (!$course = $DB->get_record('course', array('id' => $onetoone->course))) {
         error_log('O2O: Could not load course');
         return false;
     }
 
-    // Loop through requests
+    // Loop through requests.
     foreach ($data->requests as $key => $value) {
 
-        // Check key/value
+        // Check key/value..
         if (!is_numeric($key) || !is_numeric($value)) {
             continue;
         }
 
-        // Load user submission
+        // Load user submission.
         if (!$attendee = onetoone_get_attendee($sessionid, $key)) {
             error_log('O2O: User '.$key.' not an attendee of this session');
             continue;
         }
 
-        // Update status
+        // Update status.
         switch ($value) {
-            // Decline
+            // Decline.
             case 1:
                 onetoone_update_signup_status(
                         $attendee->submissionid,
@@ -2425,12 +2403,12 @@ function onetoone_approve_requests($data) {
                         $USER->id
                 );
 
-                // Send a cancellation notice to the user
+                // Send a cancellation notice to the user.
                 onetoone_send_cancellation_notice($onetoone, $session, $attendee->id);
 
                 break;
 
-            // Approve
+            // Approve.
             case 2:
                 onetoone_update_signup_status(
                         $attendee->submissionid,
@@ -2444,7 +2422,7 @@ function onetoone_approve_requests($data) {
 
                 $contextmodule = context_module::instance($cm->id);
 
-                // Check if there is capacity
+                // Check if there is capacity.
                 if (onetoone_session_has_capacity($session, $contextmodule)) {
                     $status = MDL_O2O_STATUS_BOOKED;
                 } else {
@@ -2453,7 +2431,7 @@ function onetoone_approve_requests($data) {
                     }
                 }
 
-                // Signup user
+                // Signup user.
                 if (!onetoone_user_signup(
                         $session,
                         $onetoone,
@@ -2470,7 +2448,7 @@ function onetoone_approve_requests($data) {
 
             case 0:
             default:
-                // Change nothing
+                // Change nothing.
                 continue;
         }
     }
@@ -2521,10 +2499,10 @@ function onetoone_print_coursemodule_info($coursemodule) {
 
     $contextmodule = context_module::instance($coursemodule->id);
     if (!has_capability('mod/onetoone:view', $contextmodule)) {
-        return ''; // not allowed to view this activity
+        return ''; // Not allowed to view this activity.
     }
     $contextcourse = context_course::instance($coursemodule->course);
-    // can view attendees
+    // Can view attendees.
     $viewattendees = has_capability('mod/onetoone:viewattendees', $contextcourse);
 
     $table = '';
@@ -2538,13 +2516,15 @@ function onetoone_print_coursemodule_info($coursemodule) {
         return '';
     }
 
-    $htmlactivitynameonly = $OUTPUT->pix_icon('icon', $onetoone->name, 'onetoone', array('class' => 'activityicon')) . $onetoone->name;
+    $htmlactivitynameonly = $OUTPUT->pix_icon('icon', $onetoone->name, 'onetoone',
+            array('class' => 'activityicon')) . $onetoone->name;
     $strviewallsessions = get_string('viewallsessions', 'onetoone');
-    $sessions_url = new moodle_url('/mod/onetoone/view.php', array('f' => $onetooneid));
-    $htmlviewallsessions = html_writer::link($sessions_url, $strviewallsessions, array('class' => 'f2fsessionlinks f2fviewallsessions', 'title' => $strviewallsessions));
+    $sessionsurl = new moodle_url('/mod/onetoone/view.php', array('f' => $onetooneid));
+    $htmlviewallsessions = html_writer::link($sessionsurl, $strviewallsessions,
+            array('class' => 'f2fsessionlinks f2fviewallsessions', 'title' => $strviewallsessions));
 
     if ($submissions = onetoone_get_user_submissions($onetooneid, $USER->id)) {
-        // User has signedup for the instance
+        // User has signedup for the instance.
         $submission = array_shift($submissions);
 
         if ($session = onetoone_get_session($submission->sessionid)) {
@@ -2552,29 +2532,29 @@ function onetoone_print_coursemodule_info($coursemodule) {
             $sessiontime = '';
 
             if ($session->datetimeknown) {
-                //foreach ($session->sessiondates as $date) {
-                    if (!empty($sessiondate)) {
-                        $sessiondate .= html_writer::empty_tag('br');
-                    }
-                    $sessiondate .= userdate($session->timestart, get_string('strftimedate'));
-                    if (!empty($sessiontime)) {
-                        $sessiontime .= html_writer::empty_tag('br');
-                    }
-                    $sessiontime .= userdate($session->timestart, get_string('strftimetime')) .
-                        ' - ' . userdate($session->timefinish, get_string('strftimetime'));
-                //}
-            }
-            else {
+                /*foreach ($session->sessiondates as $date) { */
+                if (!empty($sessiondate)) {
+                    $sessiondate .= html_writer::empty_tag('br');
+                }
+                $sessiondate .= userdate($session->timestart, get_string('strftimedate'));
+                if (!empty($sessiontime)) {
+                    $sessiontime .= html_writer::empty_tag('br');
+                }
+                $sessiontime .= userdate($session->timestart, get_string('strftimetime')) .
+                    ' - ' . userdate($session->timefinish, get_string('strftimetime'));
+                /*}*/
+            } else {
                 $sessiondate = get_string('wait-listed', 'onetoone');
                 $sessiontime = get_string('wait-listed', 'onetoone');
             }
 
-            // don't include the link to cancel a session if it has already occurred
+            // Don't include the link to cancel a session if it has already occurred.
             $cancellink = '';
             if (!onetoone_has_session_started($session, $timenow)) {
                 $strcancelbooking = get_string('cancelbooking', 'onetoone');
-                $cancel_url = new moodle_url('/mod/onetoone/cancelsignup.php', array('s' => $session->id));
-                $cancellink = html_writer::tag('tr', html_writer::tag('td', html_writer::link($cancel_url, $strcancelbooking, array('title' => $strcancelbooking))));
+                $cancelurl = new moodle_url('/mod/onetoone/cancelsignup.php', array('s' => $session->id));
+                $cancellink = html_writer::tag('tr', html_writer::tag('td',
+                        html_writer::link($cancelurl, $strcancelbooking, array('title' => $strcancelbooking))));
             }
 
             $strmoreinfo = get_string('moreinfo', 'onetoone');
@@ -2590,29 +2570,35 @@ function onetoone_print_coursemodule_info($coursemodule) {
                 $venue = $customfielddata['venue']->data;
             }
 
-            // don't include the link to view attendees if user is lacking capability
+            // Don't include the link to view attendees if user is lacking capability.
             $attendeeslink = '';
             if ($viewattendees) {
-                $attendees_url = new moodle_url('/mod/onetoone/attendees.php', array('s' => $session->id));
-                $attendeeslink = html_writer::tag('tr', html_writer::tag('td', html_writer::link($attendees_url, $strseeattendees, array('class' => 'f2fsessionlinks f2fviewattendees', 'title' => $strseeattendees))));
+                $attendeesurl = new moodle_url('/mod/onetoone/attendees.php', array('s' => $session->id));
+                $attendeeslink = html_writer::tag('tr', html_writer::tag('td', html_writer::link($attendeesurl,
+                        $strseeattendees, array('class' => 'f2fsessionlinks f2fviewattendees', 'title' => $strseeattendees))));
             }
 
-            $signup_url = new moodle_url('/mod/onetoone/signup.php', array('s' => $session->id));
+            $signupurl = new moodle_url('/mod/onetoone/signup.php', array('s' => $session->id));
 
             $table = html_writer::start_tag('table', array('class' => 'table90 inlinetable'))
                 .html_writer::start_tag('tr', array('class' => 'f2factivityname'))
                 .html_writer::tag('td', $htmlactivitynameonly, array('class' => 'f2fsessionnotice', 'colspan' => '4'))
                 .html_writer::end_tag('tr')
                 .html_writer::start_tag('tr')
-                .html_writer::tag('td', get_string('bookingstatus', 'onetoone'), array('class' => 'f2fsessionnotice', 'colspan' => '4'))
-                .html_writer::tag('td', html_writer::tag('span', get_string('options', 'onetoone').':', array('class' => 'f2fsessionnotice')))
+                .html_writer::tag('td', get_string('bookingstatus', 'onetoone'),
+                        array('class' => 'f2fsessionnotice', 'colspan' => '4'))
+                .html_writer::tag('td', html_writer::tag('span', get_string('options', 'onetoone').':',
+                        array('class' => 'f2fsessionnotice')))
                 .html_writer::end_tag('tr')
                 .html_writer::start_tag('tr', array('class' => 'f2fsessioninfo'))
                 .html_writer::tag('td', $location)
                 .html_writer::tag('td', $venue)
                 .html_writer::tag('td', $sessiondate)
                 .html_writer::tag('td', $sessiontime)
-                .html_writer::tag('td', html_writer::start_tag('table', array('border' => '0')) . html_writer::start_tag('tr') . html_writer::tag('td', html_writer::link($signup_url, $strmoreinfo, array('class' => 'f2fsessionlinks f2fsessioninfolink', 'title' => $strmoreinfo))))
+                .html_writer::tag('td', html_writer::start_tag('table', array('border' => '0')) . html_writer::start_tag('tr').
+                        html_writer::tag('td',
+                                html_writer::link($signupurl, $strmoreinfo, array('class' => 'f2fsessionlinks f2fsessioninfolink',
+                                    'title' => $strmoreinfo))))
                 .html_writer::end_tag('tr')
                 .$attendeeslink
                 .$cancellink
@@ -2626,13 +2612,15 @@ function onetoone_print_coursemodule_info($coursemodule) {
 
         $table = html_writer::start_tag('table', array('class' => 'f2fsession inlinetable'))
             .html_writer::start_tag('tr', array('class' => 'f2factivityname'))
-            .html_writer::tag('td', $htmlactivitynameonly, array('class' => 'f2fsessionnotice', 'colspan' => '2'))
+            .html_writer::tag('td', $htmlactivitynameonly,
+                    array('class' => 'f2fsessionnotice', 'colspan' => '2'))
             .html_writer::end_tag('tr')
             .html_writer::start_tag('tr')
-            .html_writer::tag('td', get_string('signupforsession', 'onetoone'), array('class' => 'f2fsessionnotice', 'colspan' => '2'))
+            .html_writer::tag('td', get_string('signupforsession', 'onetoone'),
+                    array('class' => 'f2fsessionnotice', 'colspan' => '2'))
             .html_writer::end_tag('tr');
 
-        $i=0;
+        $i = 0;
         foreach ($sessions as $session) {
             if ($session->datetimeknown && (onetoone_has_session_started($session, $timenow))) {
                 continue;
@@ -2650,8 +2638,7 @@ function onetoone_print_coursemodule_info($coursemodule) {
                 if (!$session->timestart) {
                     $sessiondate = get_string('unknowndate', 'onetoone');
                     $sessiontime = get_string('unknowntime', 'onetoone');
-                }
-                else {
+                } else {
                     $sessiondate = userdate($session->timestart, get_string('strftimedate'));
                     $sessiontime = userdate($session->timestart, get_string('strftimetime')).
                         ' - '.userdate($session->timefinish, get_string('strftimetime'));
@@ -2659,16 +2646,14 @@ function onetoone_print_coursemodule_info($coursemodule) {
                         $multiday = ' ('.get_string('multiday', 'onetoone').')';
                     }*/
                 }
-            }
-            else {
+            } else {
                 $sessiondate = get_string('wait-listed', 'onetoone');
             }
 
             if ($i == 0) {
                 $table .= html_writer::start_tag('tr');
                 $i++;
-            }
-            else if ($i++ % 2 == 0) {
+            } else if ($i++ % 2 == 0) {
                 if ($i > $onetoone->display) {
                     break;
                 }
@@ -2683,10 +2668,12 @@ function onetoone_print_coursemodule_info($coursemodule) {
             }
 
             if ($coursemodule->uservisible) {
-                $signup_url = new moodle_url('/mod/onetoone/signup.php', array('s' => $session->id));
-                $table .= html_writer::tag('td', html_writer::link($signup_url, $locationstring . $sessiondate . html_writer::empty_tag('br') . $sessiontime . $multiday, array('class' => 'f2fsessiontime')));
+                $signupurl = new moodle_url('/mod/onetoone/signup.php', array('s' => $session->id));
+                $table .= html_writer::tag('td', html_writer::link($signupurl, $locationstring . $sessiondate
+                        . html_writer::empty_tag('br') . $sessiontime . $multiday, array('class' => 'f2fsessiontime')));
             } else {
-                $table .= html_writer::tag('td', html_writer::tag('span', $locationstring . $sessiondate . html_writer::empty_tag('br') . $sessiontime . $multiday, array('class' => 'f2fsessiontime')));
+                $table .= html_writer::tag('td', html_writer::tag('span', $locationstring . $sessiondate
+                        . html_writer::empty_tag('br') . $sessiontime . $multiday, array('class' => 'f2fsessiontime')));
             }
 
         }
@@ -2696,15 +2683,14 @@ function onetoone_print_coursemodule_info($coursemodule) {
 
         $table .= html_writer::end_tag('tr')
             .html_writer::start_tag('tr')
-            .html_writer::tag('td', $coursemodule->uservisible ? $htmlviewallsessions : $strviewallsessions, array('colspan' => '2'))
+            .html_writer::tag('td', $coursemodule->uservisible ?
+                    $htmlviewallsessions : $strviewallsessions, array('colspan' => '2'))
             .html_writer::end_tag('tr')
             .html_writer::end_tag('table');
-    }
-    elseif (has_capability('mod/onetoone:viewemptyactivities', $contextmodule)) {
-        return html_writer::tag('span', $htmlactivitynameonly . html_writer::empty_tag('br') . $htmlviewallsessions, array('class' => 'f2fsessionnotice f2factivityname f2fonepointfive'));
-    }
-    else {
-        // Nothing to display to this user
+    } else if (has_capability('mod/onetoone:viewemptyactivities', $contextmodule)) {
+        return html_writer::tag('span', $htmlactivitynameonly
+                . html_writer::empty_tag('br') . $htmlviewallsessions,
+                array('class' => 'f2fsessionnotice f2factivityname f2fonepointfive'));
     }
 
     return $table;
@@ -2721,15 +2707,17 @@ function onetoone_print_coursemodule_info($coursemodule) {
 function onetoone_get_ical_attachment($method, $onetoone, $session, $user) {
     global $CFG, $DB;
 
-    // First, generate all the VEVENT blocks
-    $VEVENTS = '';
-    //foreach ($session->sessiondates as $date) {
-        // Date that this representation of the calendar information was created -
-        // we use the time the session was created
-        // http://www.kanzaki.com/docs/ical/dtstamp.html
-        $DTSTAMP = onetoone_ical_generate_timestamp($session->timecreated);
+    // First, generate all the VEVENT blocks.
+    $vevents = '';
+    /*
+     * foreach ($session->sessiondates as $date) {
+     * Date that this representation of the calendar information was created -
+     * we use the time the session was created
+     * http://www.kanzaki.com/docs/ical/dtstamp.html
+    */
+        $dtstamp = onetoone_ical_generate_timestamp($session->timecreated);
 
-        // UIDs should be globally unique
+        // UIDs should be globally unique.
         $urlbits = parse_url($CFG->wwwroot);
         $sql = "SELECT COUNT(*)
             FROM {onetoone_signups} su
@@ -2740,89 +2728,94 @@ function onetoone_get_ical_attachment($method, $onetoone, $session, $user) {
                 AND sus.statuscode = ? ";
         $params = array($user->id, $session->id, MDL_O2O_STATUS_USER_CANCELLED);
 
+        $uid =
+            $dtstamp .
+            '-' . substr(md5($CFG->siteidentifier . $session->id ), -6) .   // Unique identifier, salted with site identifier.
+            '-' . $DB->count_records_sql($sql, $params) .                              // New UID if this is a re-signup.
+            '@' . $urlbits['host'];                                                    // Hostname for this moodle installation.
 
-        $UID =
-            $DTSTAMP .
-            '-' . substr(md5($CFG->siteidentifier . $session->id ), -6) .   // Unique identifier, salted with site identifier
-            '-' . $DB->count_records_sql($sql, $params) .                              // New UID if this is a re-signup
-            '@' . $urlbits['host'];                                                    // Hostname for this moodle installation
+        $dtstart = onetoone_ical_generate_timestamp($session->timestart);
+        $dtend   = onetoone_ical_generate_timestamp($session->timefinish);
 
-        $DTSTART = onetoone_ical_generate_timestamp($session->timestart);
-        $DTEND   = onetoone_ical_generate_timestamp($session->timefinish);
+    /*
+     * FIXME: currently we are not sending updates if the times of the
+     * sesion are changed. This is not ideal!
+     */
+        $sequence = ($method & MDL_O2O_CANCEL) ? 1 : 0;
 
-        // FIXME: currently we are not sending updates if the times of the
-        // sesion are changed. This is not ideal!
-        $SEQUENCE = ($method & MDL_O2O_CANCEL) ? 1 : 0;
+        $summary     = onetoone_ical_escape($onetoone->name);
+        $description = onetoone_ical_escape($session->details, true);
 
-        $SUMMARY     = onetoone_ical_escape($onetoone->name);
-        $DESCRIPTION = onetoone_ical_escape($session->details, true);
-
-        // Get the location data from custom fields if they exist
+        // Get the location data from custom fields if they exist.
         $customfielddata = onetoone_get_customfielddata($session->id);
         $locationstring = '';
-        if (!empty($customfielddata['room'])) {
-            $locationstring .= $customfielddata['room']->data;
+    if (!empty($customfielddata['room'])) {
+        $locationstring .= $customfielddata['room']->data;
+    }
+    if (!empty($customfielddata['venue'])) {
+        if (!empty($locationstring)) {
+            $locationstring .= "\n";
         }
-        if (!empty($customfielddata['venue'])) {
-            if (!empty($locationstring)) {
-                $locationstring .= "\n";
-            }
-            $locationstring .= $customfielddata['venue']->data;
+        $locationstring .= $customfielddata['venue']->data;
+    }
+    if (!empty($customfielddata['location'])) {
+        if (!empty($locationstring)) {
+            $locationstring .= "\n";
         }
-        if (!empty($customfielddata['location'])) {
-            if (!empty($locationstring)) {
-                $locationstring .= "\n";
-            }
-            $locationstring .= $customfielddata['location']->data;
-        }
+        $locationstring .= $customfielddata['location']->data;
+    }
 
-        // NOTE: Newlines are meant to be encoded with the literal sequence
-        // '\n'. But evolution presents a single line text field for location,
-        // and shows the newlines as [0x0A] junk. So we switch it for commas
-        // here. Remember commas need to be escaped too.
-        $LOCATION    = str_replace('\n', '\, ', onetoone_ical_escape($locationstring));
+    /*
+     * NOTE: Newlines are meant to be encoded with the literal sequence
+     * But evolution presents a single line text field for location,
+     * and shows the newlines as [0x0A] junk. So we switch it for commas
+     * here. Remember commas need to be escaped too.
+     */
 
-        $ORGANISEREMAIL = get_config(NULL, 'onetoone_fromaddress');
-
-        $ROLE = 'REQ-PARTICIPANT';
-        $CANCELSTATUS = '';
-        if ($method & MDL_O2O_CANCEL) {
-            $ROLE = 'NON-PARTICIPANT';
-            $CANCELSTATUS = "\nSTATUS:CANCELLED";
-        }
+        $location    = str_replace('\n', '\, ', onetoone_ical_escape($locationstring));
+        $organisermail = get_config(null, 'onetoone_fromaddress');
+        $role = 'REQ-PARTICIPANT';
+        $cancelstatus = '';
+    if ($method & MDL_O2O_CANCEL) {
+        $role = 'NON-PARTICIPANT';
+        $cancelstatus = "\nSTATUS:CANCELLED";
+    }
 
         $icalmethod = ($method & MDL_O2O_INVITE) ? 'REQUEST' : 'CANCEL';
+    /*
+     * FIXME: if the user has input their name in another language, we need
+     * to set the LANGUAGE property parameter here
+    */
+        $username = fullname($user);
+        $mailto   = $user->email;
+    /*
+     * The extra newline at the bottom is so multiple events start on their
+     * own lines. The very last one is trimmed outside the loop
+     */
 
-        // FIXME: if the user has input their name in another language, we need
-        // to set the LANGUAGE property parameter here
-        $USERNAME = fullname($user);
-        $MAILTO   = $user->email;
-
-        // The extra newline at the bottom is so multiple events start on their
-        // own lines. The very last one is trimmed outside the loop
-        $VEVENTS .= <<<EOF
+        $vevents .= <<<EOF
 BEGIN:VEVENT
-UID:{$UID}
-DTSTAMP:{$DTSTAMP}
-DTSTART:{$DTSTART}
-DTEND:{$DTEND}
-SEQUENCE:{$SEQUENCE}
-SUMMARY:{$SUMMARY}
-LOCATION:{$LOCATION}
-DESCRIPTION:{$DESCRIPTION}
+UID:{$uid}
+DTSTAMP:{$dtstamp}
+DTSTART:{$dtstart}
+DTEND:{$dtend}
+SEQUENCE:{$sequence}
+SUMMARY:{$summary}
+LOCATION:{$location}
+DESCRIPTION:{$description}
 CLASS:PRIVATE
-TRANSP:OPAQUE{$CANCELSTATUS}
-ORGANIZER;CN={$ORGANISEREMAIL}:MAILTO:{$ORGANISEREMAIL}
-ATTENDEE;CUTYPE=INDIVIDUAL;ROLE={$ROLE};PARTSTAT=NEEDS-ACTION;
- RSVP=FALSE;CN={$USERNAME};LANGUAGE=en:MAILTO:{$MAILTO}
+TRANSP:OPAQUE{$cancelstatus}
+ORGANIZER;CN={$organisermail}:MAILTO:{$organisermail}
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE={$role};PARTSTAT=NEEDS-ACTION;
+ RSVP=FALSE;CN={$username};LANGUAGE=en:MAILTO:{$mailto}
 END:VEVENT
 
 EOF;
-    //}
+    /*}*/
 
-    $VEVENTS = trim($VEVENTS);
+    $vevents = trim($vevents);
 
-    // TODO: remove the hard-coded timezone!
+    // TODO: remove the hard-coded timezone!.
     $template = <<<EOF
 BEGIN:VCALENDAR
 CALSCALE:GREGORIAN
@@ -2847,7 +2840,7 @@ TZOFFSETFROM:+1200
 TZOFFSETTO:+1300
 END:DAYLIGHT
 END:VTIMEZONE
-{$VEVENTS}
+{$vevents}
 END:VCALENDAR
 EOF;
 
@@ -2864,7 +2857,7 @@ function onetoone_ical_generate_timestamp($timestamp) {
 /**
  * Escapes data of the text datatype in ICAL documents.
  *
- * See RFC2445 or http://www.kanzaki.com/docs/ical/text.html or a more readable definition
+ * See RFC2445 or http://www.kanzaki.com/docs/ical/text.html or a more readable definition.
  */
 function onetoone_ical_escape($text, $converthtml=false) {
     if (empty($text)) {
@@ -2882,7 +2875,7 @@ function onetoone_ical_escape($text, $converthtml=false) {
     );
 
     // Text should be wordwrapped at 75 octets, and there should be one
-    // whitespace after the newline that does the wrapping
+    // whitespace after the newline that does the wrapping.
     $text = wordwrap($text, 75, "\n ", true);
 
     return $text;
@@ -2922,7 +2915,7 @@ function onetoone_update_grades($onetoone=null, $userid=0) {
  * @param mixed grades    grades objects or 'reset' (means reset grades in gradebook)
  * @return int 0 if ok, error code otherwise
  */
-function onetoone_grade_item_update($onetoone, $grades=NULL) {
+function onetoone_grade_item_update($onetoone, $grades=null) {
     global $CFG, $DB;
 
     if (!isset($onetoone->cmidnumber)) {
@@ -2942,9 +2935,9 @@ function onetoone_grade_item_update($onetoone, $grades=NULL) {
     $params['gradepass'] = 100;
     $params['grademax']  = 100;
 
-    if ($grades  === 'reset') {
+    if ($grades === 'reset') {
         $params['reset'] = true;
-        $grades = NULL;
+        $grades = null;
     }
 
     $retcode = grade_update('mod/onetoone', $onetoone->course, 'mod', 'onetoone',
@@ -2960,18 +2953,18 @@ function onetoone_grade_item_update($onetoone, $grades=NULL) {
  */
 function onetoone_grade_item_delete($onetoone) {
     $retcode = grade_update('mod/onetoone', $onetoone->course, 'mod', 'onetoone',
-                            $onetoone->id, 0, NULL, array('deleted' => 1));
+                            $onetoone->id, 0, null, array('deleted' => 1));
     return ($retcode === GRADE_UPDATE_OK);
 }
 
 /**
  * Return number of attendees signed up to a onetoone session
  *
- * @param integer $session_id
+ * @param integer $sessionid
  * @param integer $status MDL_O2O_STATUS_* constant (optional)
  * @return integer
  */
-function onetoone_get_num_attendees($session_id, $status=MDL_O2O_STATUS_BOOKED) {
+function onetoone_get_num_attendees($sessionid, $status=MDL_O2O_STATUS_BOOKED) {
     global $CFG, $DB;
 
     $sql = 'SELECT count(ss.id)
@@ -2988,8 +2981,8 @@ function onetoone_get_num_attendees($session_id, $status=MDL_O2O_STATUS_BOOKED) 
         AND
         ss.statuscode >= ?';
 
-    // for the session, pick signups that haven't been superceded, or cancelled
-    return (int) $DB->count_records_sql($sql, array($session_id, $status));
+    // For the session, pick signups that haven't been superceded, or cancelled.
+    return (int) $DB->count_records_sql($sql, array($sessionid, $status));
 }
 
 /**
@@ -3001,18 +2994,19 @@ function onetoone_get_num_attendees($session_id, $status=MDL_O2O_STATUS_BOOKED) 
  * @return array submissions | false No submissions
  */
 function onetoone_get_user_submissions($onetooneid, $userid, $includecancellations=false) {
-    global $CFG,$DB;
+    global $CFG, $DB;
 
     $whereclause = "s.onetoone = ? AND su.userid = ? AND ss.superceded != 1";
     $whereparams = array($onetooneid, $userid);
 
-    // If not show cancelled, only show requested and up status'
+    // If not show cancelled, only show requested and up status.'
     if (!$includecancellations) {
         $whereclause .= ' AND ss.statuscode >= ? AND ss.statuscode < ?';
         $whereparams = array_merge($whereparams, array(MDL_O2O_STATUS_REQUESTED, MDL_O2O_STATUS_NO_SHOW));
     }
-//echo "SELECT * FROM `mdl_onetoone_sessions_dates` where timestart >now()";exit;//
-    //TODO fix mailedconfirmation, timegraded, timecancelled, etc
+    /* echo "SELECT * FROM `mdl_onetoone_sessions_dates` where timestart >now()";exit;
+     * TODO fix mailedconfirmation, timegraded, timecancelled, etc.
+     *  */
     $timenow = time();
     return $DB->get_records_sql("
         SELECT
@@ -3044,9 +3038,9 @@ function onetoone_get_user_submissions($onetooneid, $userid, $includecancellatio
         ORDER BY
             s.timecreated
     ", $whereparams);
-    //added by pinky to make sing up form available for those who had registered for session 
-    //but did not attend it and session has expaired
-    //AND s.id In (SELECT sessionid FROM {onetoone_sessions_dates} where timestart > unix_timestamp())
+    // Added by pinky to make sing up form available for those who had registered for session
+    // but did not attend it and session has expaired
+    // AND s.id In (SELECT sessionid FROM {onetoone_sessions_dates} where timestart > unix_timestamp()).
 }
 
 /**
@@ -3062,14 +3056,14 @@ function onetoone_user_cancel_submission($sessionid, $userid, $cancelreason='') 
 
     $signup = $DB->get_record('onetoone_signups', array('sessionid' => $sessionid, 'userid' => $userid));
     if (!$signup) {
-        return true; // not signed up, nothing to do
+        return true; // Not signed up, nothing to do.
     }
 
     return onetoone_update_signup_status($signup->id, MDL_O2O_STATUS_USER_CANCELLED, $userid, $cancelreason);
 }
 
 /**
- * A list of actions in the logs that indicate view activity for participants
+ * A list of actions in the logs that indicate view activity for participants.
  */
 function onetoone_get_view_actions() {
     return array('view', 'view all');
@@ -3099,12 +3093,10 @@ function onetoone_user_outline($course, $user, $mod, $onetoone) {
         $result = new stdClass;
         $result->info = get_string('grade') . ': ' . $grade->grade;
         $result->time = $grade->dategraded;
-    }
-    elseif ($submissions = onetoone_get_user_submissions($onetoone->id, $user->id)) {
+    } else if ($submissions = onetoone_get_user_submissions($onetoone->id, $user->id)) {
         $result->info = get_string('usersignedup', 'onetoone');
         $result->time = reset($submissions)->timecreated;
-    }
-    else {
+    } else {
         $result->info = get_string('usernotsignedup', 'onetoone');
     }
 
@@ -3137,8 +3129,7 @@ function onetoone_user_complete($course, $user, $mod, $onetoone) {
                 print get_string('usercancelledon', 'onetoone', format_string($timecancelled)) . html_writer::empty_tag('br');
             }
         }
-    }
-    else {
+    } else {
         print get_string('usernotsignedup', 'onetoone');
     }
 
@@ -3158,13 +3149,12 @@ function onetoone_add_session_to_calendar($session, $onetoone, $calendartype = '
     global $CFG, $DB;
 
     if (empty($session->datetimeknown)) {
-        return true; //date unkown, can't add to calendar
+        return true; // Date unkown, can't add to calendar.
     }
 
     if (empty($onetoone->showoncalendar) && empty($onetoone->usercalentry)) {
-        return true; //onetoone calendar settings prevent calendar
+        return true; // Onetoone calendar settings prevent calendar.
     }
-
     $description = '';
     if (!empty($onetoone->description)) {
         $description .= html_writer::tag('p', clean_param($onetoone->description, PARAM_CLEANHTML));
@@ -3194,7 +3184,6 @@ function onetoone_add_session_to_calendar($session, $onetoone, $calendartype = '
     }
 
     $result = true;
-    
     $newevent = new stdClass();
     $newevent->name = $shortname;
     $newevent->description = $description;
@@ -3212,8 +3201,9 @@ function onetoone_add_session_to_calendar($session, $onetoone, $calendartype = '
     $newevent->timemodified = time();
 
     if ($calendartype == 'user' && $eventtype == 'booking') {
-        //Check for and Delete the 'created' calendar event to reduce multiple entries for the same event
-        $DB->delete_records_select('event', 'name=? AND userid=? AND instance =? AND eventtype=?',array($shortname,$userid,$session->onetoone, 'onetoonesession'));
+        // Check for and Delete the 'created' calendar event to reduce multiple entries for the same event.
+        $DB->delete_records_select('event', 'name=? AND userid=? AND instance =? AND eventtype=?',
+                array($shortname, $userid, $session->onetoone, 'onetoonesession'));
     }
 
     $result = $result && $DB->insert_record('event', $newevent);
@@ -3256,7 +3246,7 @@ function onetoone_update_user_calendar_events($session, $eventtype) {
 
     $users = onetoone_delete_user_calendar_events($session, $eventtype);
 
-    // Add this session to these users' calendar
+    // Add this session to these users' calendar.
     foreach ($users as $user) {
         onetoone_add_session_to_calendar($session, $onetoone, 'user', $user->userid, $eventtype);
     }
@@ -3288,13 +3278,13 @@ function onetoone_delete_user_calendar_events($session, $eventtype) {
         $whereparams[] = $likestr;
     }
 
-    // Users calendar
+    // Users calendar.
     $users = $DB->get_records_sql("SELECT DISTINCT userid
         FROM {event}
         WHERE $whereclause", $whereparams);
 
     if ($users && count($users) > 0) {
-        // Delete the existing events
+        // Delete the existing events.
         $DB->delete_records_select('event', $whereclause, $whereparams);
     }
 
@@ -3316,7 +3306,7 @@ function onetoone_session_has_capacity($session, $context = false) {
 
     $signupcount = onetoone_get_num_attendees($session->id);
     if ($signupcount >= $session->capacity) {
-        // if session is full, check if overbooking is allowed for this user
+        // If session is full, check if overbooking is allowed for this user.
         if (!$context || !has_capability('mod/onetoone:overbook', $context)) {
             return false;
         }
@@ -3353,8 +3343,7 @@ function onetoone_print_session($session, $showcapacity, $calendaroutput=false, 
             if (O2O_CUSTOMFIELD_TYPE_MULTISELECT == $field->type) {
                 $values = explode(O2O_CUSTOMFIELD_DELIMITER, format_string($customdata[$field->id]->data));
                 $data = implode(html_writer::empty_tag('br'), $values);
-            }
-            else {
+            } else {
                 $data = format_string($customdata[$field->id]->data);
             }
         }
@@ -3364,17 +3353,16 @@ function onetoone_print_session($session, $showcapacity, $calendaroutput=false, 
     $strdatetime = str_replace(' ', '&nbsp;', get_string('sessiondatetime', 'onetoone'));
     if ($session->datetimeknown) {
         $html = '';
-        //foreach ($session->sessiondates as $date) {
-            if (!empty($html)) {
-                $html .= html_writer::empty_tag('br');
-            }
-            $timestart = userdate($session->timestart, get_string('strftimedatetime'));
-            $timefinish = userdate($session->timefinish, get_string('strftimedatetime'));
-            $html .= "$timestart &ndash; $timefinish";
-        //}
+        /*foreach ($session->sessiondates as $date) { */
+        if (!empty($html)) {
+            $html .= html_writer::empty_tag('br');
+        }
+        $timestart = userdate($session->timestart, get_string('strftimedatetime'));
+        $timefinish = userdate($session->timefinish, get_string('strftimedatetime'));
+        $html .= "$timestart &ndash; $timefinish";
+        /*}*/
         $table->data[] = array($strdatetime, $html);
-    }
-    else {
+    } else {
         $table->data[] = array($strdatetime, html_writer::tag('i', get_string('wait-listed', 'onetoone')));
     }
 
@@ -3383,23 +3371,23 @@ function onetoone_print_session($session, $showcapacity, $calendaroutput=false, 
 
     if ($showcapacity) {
         if ($session->allowoverbook) {
-            $table->data[] = array(get_string('capacity', 'onetoone'), $session->capacity . ' ('.strtolower(get_string('allowoverbook', 'onetoone')).')');
+            $table->data[] = array(get_string('capacity', 'onetoone'),
+                $session->capacity . ' ('.strtolower(get_string('allowoverbook', 'onetoone')).')');
         } else {
             $table->data[] = array(get_string('capacity', 'onetoone'), $session->capacity);
         }
-    }
-    elseif (!$calendaroutput) {
+    } else if (!$calendaroutput) {
         $table->data[] = array(get_string('seatsavailable', 'onetoone'), max(0, $placesleft));
     }
 
-    // Display requires approval notification
+    // Display requires approval notification.
     $onetoone = $DB->get_record('onetoone', array('id' => $session->onetoone));
 
     if ($onetoone->approvalreqd) {
         $table->data[] = array('', get_string('sessionrequiresmanagerapproval', 'onetoone'));
     }
 
-    // Display waitlist notification
+    // Display waitlist notification.
     if (!$hidesignup && $session->allowoverbook && $placesleft < 1) {
         $table->data[] = array('', get_string('userwillbewaitlisted', 'onetoone'));
     }
@@ -3418,11 +3406,11 @@ function onetoone_print_session($session, $showcapacity, $calendaroutput=false, 
         $table->data[] = array(get_string('details', 'onetoone'), $details);
     }
 
-    // Display trainers
+    // Display trainers.
     $trainerroles = onetoone_get_trainer_roles();
 
     if ($trainerroles) {
-        // Get trainers
+        // Get trainers.
         $trainers = onetoone_get_trainers($session->id);
 
         foreach ($trainerroles as $role => $rolename) {
@@ -3432,13 +3420,13 @@ function onetoone_print_session($session, $showcapacity, $calendaroutput=false, 
                 continue;
             }
 
-            $trainer_names = array();
+            $trainernames = array();
             foreach ($trainers[$role] as $trainer) {
-                $trainer_url = new moodle_url('/user/view.php', array('id' => $trainer->id));
-                $trainer_names[] = html_writer::link($trainer_url, fullname($trainer));
+                $trainerurl = new moodle_url('/user/view.php', array('id' => $trainer->id));
+                $trainernames[] = html_writer::link($trainerurl, fullname($trainer));
             }
 
-            $table->data[] = array($rolename, implode(', ', $trainer_names));
+            $table->data[] = array($rolename, implode(', ', $trainernames));
         }
     }
 
@@ -3460,8 +3448,7 @@ function onetoone_save_customfield_value($fieldid, $data, $otherid, $table) {
     $dbdata = null;
     if (is_array($data)) {
         $dbdata = trim(implode(O2O_CUSTOMFIELD_DELIMITER, $data), ';');
-    }
-    else {
+    } else {
         $dbdata = trim($data);
     }
 
@@ -3471,16 +3458,15 @@ function onetoone_save_customfield_value($fieldid, $data, $otherid, $table) {
     $fieldname = "{$table}id";
     if ($record = $DB->get_record("onetoone_{$table}_data", array('fieldid' => $fieldid, $fieldname => $otherid))) {
         if (empty($dbdata)) {
-            // Clear out the existing value
+            // Clear out the existing value.
             return $DB->delete_records("onetoone_{$table}_data", array('id' => $record->id));
         }
 
         $newrecord->id = $record->id;
         return $DB->update_record("onetoone_{$table}_data", $newrecord);
-    }
-    else {
+    } else {
         if (empty($dbdata)) {
-            return true; // no need to store empty values
+            return true; // No need to store empty values.
         }
 
         $newrecord->fieldid = $fieldid;
@@ -3556,10 +3542,11 @@ function onetoone_list_of_customfields() {
         $table->attributes['class'] = 'halfwidthtable';
         foreach ($fields as $field) {
             $fieldname = format_string($field->name);
-            $edit_url = new moodle_url('/mod/onetoone/customfield.php', array('id' => $field->id));
-            $editlink = $OUTPUT->action_icon($edit_url, new pix_icon('t/edit', get_string('edit')));
-            $delete_url = new moodle_url('/mod/onetoone/customfield.php', array('id' => $field->id, 'd' => '1', 'sesskey' => $USER->sesskey));
-            $deletelink = $OUTPUT->action_icon($delete_url, new pix_icon('t/delete', get_string('delete')));
+            $editurl = new moodle_url('/mod/onetoone/customfield.php', array('id' => $field->id));
+            $editlink = $OUTPUT->action_icon($editurl, new pix_icon('t/edit', get_string('edit')));
+            $deleteurl = new moodle_url('/mod/onetoone/customfield.php', array('id' =>
+                $field->id, 'd' => '1', 'sesskey' => $USER->sesskey));
+            $deletelink = $OUTPUT->action_icon($deleteurl, new pix_icon('t/delete', get_string('delete')));
             $table->data[] = array($fieldname, $editlink, $deletelink);
         }
         return html_writer::table($table, true);
@@ -3571,28 +3558,28 @@ function onetoone_list_of_customfields() {
 function onetoone_update_trainers($sessionid, $form) {
     global $DB;
 
-    // If we recieved bad data
+    // If we recieved bad data.
     if (!is_array($form)) {
         return false;
     }
 
-    // Load current trainers
-    $old_trainers = onetoone_get_trainers($sessionid);
+    // Load current trainers.
+    $oldtrainers = onetoone_get_trainers($sessionid);
 
     $transaction = $DB->start_delegated_transaction();
 
-    // Loop through form data and add any new trainers
+    // Loop through form data and add any new trainers.
     foreach ($form as $roleid => $trainers) {
 
-        // Loop through trainers in this role
+        // Loop through trainers in this role.
         foreach ($trainers as $trainer) {
 
             if (!$trainer) {
                 continue;
             }
 
-            // If the trainer doesn't exist already, create it
-            if (!isset($old_trainers[$roleid][$trainer])) {
+            // If the trainer doesn't exist already, create it.
+            if (!isset($oldtrainers[$roleid][$trainer])) {
 
                 $newtrainer = new stdClass();
                 $newtrainer->userid = $trainer;
@@ -3605,23 +3592,24 @@ function onetoone_update_trainers($sessionid, $form) {
                     return false;
                 }
             } else {
-                unset($old_trainers[$roleid][$trainer]);
+                unset($oldtrainers[$roleid][$trainer]);
             }
         }
     }
 
     // Loop through what is left of old trainers, and remove
-    // (as they have been deselected)
-    if ($old_trainers) {
-        foreach ($old_trainers as $roleid => $trainers) {
-            // If no trainers left
+    // (as they have been deselected).
+    if ($oldtrainers) {
+        foreach ($oldtrainers as $roleid => $trainers) {
+            // If no trainers left.
             if (empty($trainers)) {
                 continue;
             }
 
-            // Delete any remaining trainers
+            // Delete any remaining trainers.
             foreach ($trainers as $trainer) {
-                if (!$DB->delete_records('onetoone_session_roles', array('sessionid' => $sessionid, 'roleid' => $roleid, 'userid' => $trainer->id))) {
+                if (!$DB->delete_records('onetoone_session_roles', array('sessionid' => $sessionid,
+                    'roleid' => $roleid, 'userid' => $trainer->id))) {
                     print_error('error:couldnotdeletetrainer', 'onetoone');
                     $transaction->force_transaction_rollback();
                     return false;
@@ -3644,17 +3632,17 @@ function onetoone_update_trainers($sessionid, $form) {
 function onetoone_get_trainer_roles() {
     global $CFG, $DB;
 
-    // Check that roles have been selected
+    // Check that roles have been selected.
     if (empty($CFG->onetoone_session_roles)) {
         return false;
     }
 
-    // Parse roles
+    // Parse roles.
     $cleanroles = clean_param($CFG->onetoone_session_roles, PARAM_SEQUENCE);
     $roles = explode(',', $cleanroles);
     list($rolesql, $params) = $DB->get_in_or_equal($roles);
 
-    // Load role names
+    // Load role names.
     $rolenames = $DB->get_records_sql("
         SELECT
             r.id,
@@ -3666,7 +3654,7 @@ function onetoone_get_trainer_roles() {
         AND r.id <> 0
     ", $params);
 
-    // Return roles and names
+    // Return roles and names.
     if (!$rolenames) {
         return array();
     }
@@ -3714,7 +3702,7 @@ function onetoone_get_trainers($sessionid, $roleid = null) {
     $rs = $DB->get_recordset_sql($sql , $params);
     $return = array();
     foreach ($rs as $record) {
-        // Create new array for this role
+        // Create new array for this role.
         if (!isset($return[$record->roleid])) {
             $return[$record->roleid] = array();
         }
@@ -3722,7 +3710,7 @@ function onetoone_get_trainers($sessionid, $roleid = null) {
     }
     $rs->close();
 
-    // If we are only after one roleid
+    // If we are only after one roleid.
     if ($roleid) {
         if (empty($return[$roleid])) {
             return false;
@@ -3730,7 +3718,7 @@ function onetoone_get_trainers($sessionid, $roleid = null) {
         return $return[$roleid];
     }
 
-    // If we are after all roles
+    // If we are after all roles.
     if (empty($return)) {
         return false;
     }
@@ -3753,7 +3741,7 @@ function onetoone_manager_needed($onetoone) {
 }
 
 /**
- * Display the list of site notices in the site-wide settings page
+ * Display the list of site notices in the site-wide settings page.
  */
 function onetoone_list_of_sitenotices() {
     global $CFG, $USER, $DB, $OUTPUT;
@@ -3766,10 +3754,11 @@ function onetoone_list_of_sitenotices() {
         $table->size = array('100%');
         foreach ($notices as $notice) {
             $noticename = format_string($notice->name);
-            $edit_url = new moodle_url('/mod/onetoone/sitenotice.php', array('id' => $notice->id));
-            $editlink = $OUTPUT->action_icon($edit_url, new pix_icon('t/edit', get_string('edit')));
-            $delete_url = new moodle_url('/mod/onetoone/sitenotice.php', array('id' => $notice->id, 'd' => '1', 'sesskey' => $USER->sesskey));
-            $deletelink = $OUTPUT->action_icon($delete_url, new pix_icon('t/delete', get_string('delete')));
+            $editurl = new moodle_url('/mod/onetoone/sitenotice.php', array('id' => $notice->id));
+            $editlink = $OUTPUT->action_icon($editurl, new pix_icon('t/edit', get_string('edit')));
+            $deleteurl = new moodle_url('/mod/onetoone/sitenotice.php',
+                    array('id' => $notice->id, 'd' => '1', 'sesskey' => $USER->sesskey));
+            $deletelink = $OUTPUT->action_icon($deleteurl, new pix_icon('t/delete', get_string('delete')));
             $table->data[] = array($noticename, $editlink, $deletelink);
         }
         return html_writer::table($table, true);
@@ -3782,8 +3771,7 @@ function onetoone_list_of_sitenotices() {
  * Add formslib fields for all custom fields defined site-wide.
  * (used by the session add/edit page and the site notices)
  */
-function onetoone_add_customfields_to_form(&$mform, $customfields, $alloptional=false)
-{
+function onetoone_add_customfields_to_form(&$mform, $customfields, $alloptional=false) {
     foreach ($customfields as $field) {
         $fieldname = "custom_$field->shortname";
 
@@ -3799,19 +3787,19 @@ function onetoone_add_customfields_to_form(&$mform, $customfields, $alloptional=
         }
 
         switch ($field->type) {
-        case O2O_CUSTOMFIELD_TYPE_TEXT:
-            $mform->addElement('text', $fieldname, $field->name);
-            break;
-        case O2O_CUSTOMFIELD_TYPE_SELECT:
-            $mform->addElement('select', $fieldname, $field->name, $options);
-            break;
-        case O2O_CUSTOMFIELD_TYPE_MULTISELECT:
-            $select = &$mform->addElement('select', $fieldname, $field->name, $options);
-            $select->setMultiple(true);
-            break;
-        default:
-            error_log("onetoone: invalid field type for custom field ID $field->id");
-            continue;
+            case O2O_CUSTOMFIELD_TYPE_TEXT:
+                $mform->addElement('text', $fieldname, $field->name);
+                break;
+            case O2O_CUSTOMFIELD_TYPE_SELECT:
+                $mform->addElement('select', $fieldname, $field->name, $options);
+                break;
+            case O2O_CUSTOMFIELD_TYPE_MULTISELECT:
+                $select = &$mform->addElement('select', $fieldname, $field->name, $options);
+                $select->setMultiple(true);
+                break;
+            default:
+                error_log("onetoone: invalid field type for custom field ID $field->id");
+                continue;
         }
 
         $mform->setType($fieldname, PARAM_TEXT);
@@ -3838,7 +3826,7 @@ function onetoone_get_cancellations($sessionid) {
     list($insql, $inparams) = $DB->get_in_or_equal($instatus);
     // Nasty SQL follows:
     // Load currently cancelled users,
-    // include most recent booked/waitlisted time also
+    // include most recent booked/waitlisted time also.
     $sql = "
             SELECT
                 u.id,
@@ -3952,17 +3940,20 @@ function onetoone_get_extra_capabilities() {
  */
 function onetoone_supports($feature) {
     switch($feature) {
-        case FEATURE_BACKUP_MOODLE2:          return true;
-        case FEATURE_GRADE_HAS_GRADE:         return true;
-        case FEATURE_COMPLETION_TRACKS_VIEWS: return true;
-
-        default: return null;
+        case FEATURE_BACKUP_MOODLE2:
+            return true;
+        case FEATURE_GRADE_HAS_GRADE:
+            return true;
+        case FEATURE_COMPLETION_TRACKS_VIEWS:
+            return true;
+        default:
+            return null;
     }
 }
 
 /**
-* onetoone assignment candidates
-*/
+ * onetoone assignment candidates
+ */
 class onetoone_candidate_selector extends user_selector_base {
     protected $sessionid;
 
@@ -3978,7 +3969,7 @@ class onetoone_candidate_selector extends user_selector_base {
      */
     public function find_users($search) {
         global $DB;
-        /// All non-signed up system users
+        // All non-signed up system users.
         list($wherecondition, $params) = $this->search_sql($search, '{user}');
 
         $fields      = 'SELECT id, firstname, lastname, email, firstnamephonetic, lastnamephonetic, middlename, alternatename';
@@ -4044,7 +4035,7 @@ class onetoone_existing_selector extends user_selector_base {
      */
     public function find_users($search) {
         global $DB;
-        //by default wherecondition retrieves all users except the deleted, not confirmed and guest
+        // By default wherecondition retrieves all users except the deleted, not confirmed and guest.
         list($wherecondition, $whereparams) = $this->search_sql($search, 'u');
 
         $fields = 'SELECT
@@ -4105,7 +4096,8 @@ class onetoone_existing_selector extends user_selector_base {
             AND ss.statuscode >= :statusapproved
         ";
         $order = " ORDER BY sign.timecreated ASC, ss.timecreated ASC";
-        $params = array ('sessid1' => $this->sessionid, 'statusbooked' => MDL_O2O_STATUS_BOOKED, 'statuswaitlisted' => MDL_O2O_STATUS_WAITLISTED);
+        $params = array ('sessid1' => $this->sessionid,
+            'statusbooked' => MDL_O2O_STATUS_BOOKED, 'statuswaitlisted' => MDL_O2O_STATUS_WAITLISTED);
         $params = array_merge($params, $whereparams);
         $params['sessid2'] = $this->sessionid;
         $params['statusapproved'] = MDL_O2O_STATUS_APPROVED;
@@ -4151,7 +4143,7 @@ function onetoone_eventhandler_user_deleted($user) {
     if ($signups = $DB->get_records('onetoone_signups', array('userid' => $user->id))) {
         foreach ($signups as $signup) {
             $session = onetoone_get_session($signup->sessionid);
-            // using $null, null fails because of passing by reference
+            // Using $null, null fails because of passing by reference.
             onetoone_user_cancel($session, $user->id, false, $null, get_string('userdeletedcancel', 'onetoone'));
         }
     }
