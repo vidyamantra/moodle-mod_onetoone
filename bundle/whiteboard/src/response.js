@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         whBoard.response = {
@@ -181,7 +185,7 @@
             chunk: function(fromUser, id, repObj) {
                 whBoard.bridge.handleMissedPackets(fromUser, id, repObj);
             },
-            //whBoard.gObj.rcvdPackId should be define into 
+            //whBoard.gObj.rcvdPackId should be define into
             //whBoard.reachedItemId
             repObjForMissedPkts: function(msgRepObj) {
                 if (whBoard.gObj.rcvdPackId != 0 || (whBoard.uid > 0 && whBoard.gObj.rcvdPackId == 0)) { //for handle very starting stage

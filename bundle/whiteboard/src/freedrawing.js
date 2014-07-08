@@ -1,3 +1,8 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
+
 (
     function(window) {
         var vcan = window.vcan;
@@ -72,7 +77,6 @@
                     this.contextTop.lineWidth = this.freeDrawingLineWidth;
                     this.contextTop.lineCap = this.contextTop.lineJoin = 'round';
 
-
                 },
                 /**
                  * through this funciton the application is creting the object(free hand draw) in indeed
@@ -119,7 +123,6 @@
                             yPoints = this.freeDrawingYPoints,
                             mdTimes = this.mdTime;
 
-
                     path.push('M ', xPoints[0] - minX, ' ', yPoints[0] - minY, ' ', mdTimes[0], ' ');
                     for (var i = 1; xPoint = xPoints[i], yPoint = yPoints[i], mdTime = mdTimes[i]; i++) { //NOTE:- this have done during the unit testing
                         path.push('L ', xPoint - minX, ' ', yPoint - minY, ' ', mdTime, ' ');
@@ -147,7 +150,6 @@
                     p = mcanvas.readyObject(p);
                     p.coreObj.type = 'freeDrawing'; // this is need to make because we are finializing the path into freedrawing
                     p = p.coreObj;
-
 
                     p.fill = null;
 
@@ -179,8 +181,9 @@
                      * critical I have removed the cloned function named max
                      */
                     max: function(array, byProperty) {
-                        if (!array || array.length === 0)
+                        if (!array || array.length === 0) {
                             return undefined;
+                        }
                         var i = array.length - 1,
                                 result = byProperty ? array[i][byProperty] : array[i];
                         if (byProperty) {
@@ -206,8 +209,9 @@
                      * @param {String} byProperty
                      */
                     min: function(array, byProperty) {
-                        if (!array || array.length === 0)
+                        if (!array || array.length === 0) {
                             return undefined;
+                        }
                         var i = array.length - 1,
                                 result = byProperty ? array[i][byProperty] : array[i];
                         if (byProperty) {

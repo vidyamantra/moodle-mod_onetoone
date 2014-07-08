@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         var whBoard = window.whBoard;
@@ -15,7 +19,7 @@
 
         //creating divs about sending data per seconds and total
         whBoard.createPacketContainer = function() {
-            //Creating Column Two	
+            //Creating Column Two.
             var packetContainer = document.getElementById('packetContainer');
 
             var headingTag = document.createElement("h4");
@@ -40,8 +44,7 @@
             totalDataLabel.innerHTML = whBoard.lang.getString('total');
             labelDiv.appendChild(totalDataLabel);
 
-
-            //Creating Column Two			
+            //Creating Column Two.
             var sentPackCont = whBoard.createPacketContDiv('sendPackCont');
             packetContainer.appendChild(sentPackCont);
 
@@ -63,7 +66,7 @@
             counterDiv.innerHTML = 0;
             totSendPacket.appendChild(counterDiv);
 
-            //Creating Column Three	
+            //Creating Column Three.
             var receviedPackCont = whBoard.createPacketContDiv('receivePackCont');
             packetContainer.appendChild(receviedPackCont);
 

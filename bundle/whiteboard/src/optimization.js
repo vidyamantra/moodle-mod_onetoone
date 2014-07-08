@@ -1,3 +1,8 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
+
 var optimization = function(socket, time) {
     return {
         socket: socket,
@@ -30,7 +35,7 @@ vcan.doOptiMize = function(e) {
     if (((typeof lastmousemovetime == 'undefined') || (lastmousemovetime == null))) {
         lastmousemovetime = new Date().getTime();
         if (!e.detail.hasOwnProperty('cevent')) {
-            vcan.calculatePackets(lastmousemovetime, 'm', (e.clientX-vcan.main.offset.x), (e.clientY-vcan.main.offset.y));
+            vcan.calculatePackets(lastmousemovetime, 'm', (e.clientX - vcan.main.offset.x), (e.clientY - vcan.main.offset.y));
         }
     }
 
@@ -39,9 +44,9 @@ vcan.doOptiMize = function(e) {
     if ((presentmousemovetime - lastmousemovetime) >= 2000) {	 // Optimized
         var currTime = new Date().getTime();
         if (!e.detail.hasOwnProperty('cevent')) {
-            vcan.calculatePackets(lastmousemovetime, 'm', (e.clientX-vcan.main.offset.x), (e.clientY-vcan.main.offset.y));
+            vcan.calculatePackets(lastmousemovetime, 'm', (e.clientX - vcan.main.offset.x), (e.clientY - vcan.main.offset.y));
         }
-        vcan.calculatePackets(lastmousemovetime, 'm', (e.clientX-vcan.main.offset.x), (e.clientY-vcan.main.offset.y));
+        vcan.calculatePackets(lastmousemovetime, 'm', (e.clientX - vcan.main.offset.x), (e.clientY - vcan.main.offset.y));
         lastmousemovetime = new Date().getTime();
     }
 }

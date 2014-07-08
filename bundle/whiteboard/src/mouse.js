@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         var vcan = window.vcan;
@@ -38,13 +42,12 @@
                  */
                 mousedown: function(e, cobj) {
                     if (e.detail.hasOwnProperty('cevent') &&  (vcan.main.action != 'create') ) {
-                        e.clientX = vcan.main.offset.x +  e.detail.cevent.x;
+                        e.clientX = vcan.main.offset.x + e.detail.cevent.x;
                         e.clientY = vcan.main.offset.y + e.detail.cevent.y;
                         e.x = vcan.main.offset.x + e.detail.cevent.x;
                         e.y = vcan.main.offset.y + e.detail.cevent.y;
                         e.pageX = vcan.main.offset.x + e.detail.cevent.x;
                         e.pageY = vcan.main.offset.y + e.detail.cevent.y;
-                        
                         e.currX = e.detail.cevent.x;
                         e.currY = e.detail.cevent.y;
                     }
@@ -54,8 +57,9 @@
 
                     if (vcan.main.action == 'move') {
                         var vcanmain = vcan.main;
-                        if (vcanmain.currentTransform)
+                        if (vcanmain.currentTransform){
                             return;
+                        }
                         var foundTarget = vcan.events().findTarget(e),
                                 pointer = vcan.utility.getReltivePoint(e);
                         if (foundTarget) {
@@ -82,7 +86,7 @@
 
                         if (!e.detail.hasOwnProperty('cevent')) {
                             var currTime = new Date().getTime();
-                            var obj = vcan.makeStackObj(currTime, 'd', (e.clientX-vcan.main.offset.x), (e.clientY-vcan.main.offset.y));
+                            var obj = vcan.makeStackObj(currTime, 'd', (e.clientX - vcan.main.offset.x), (e.clientY - vcan.main.offset.y));
                             whBoard.uid++;
                             console.log('uid ' + whBoard.uid);
                             obj.uid = whBoard.uid;
@@ -91,7 +95,7 @@
                             whBoard.utility.updateSentPackets(obj);
                         }
 
-                        //these code run when user is trying to create particular object	
+                        //these code run when user is trying to create particular object.
                     } else if (vcan.main.action == 'create') {
                         if (e.detail.hasOwnProperty('cevent')) {
                             e.clientX = e.detail.cevent.x + (whBoard.vcan.main.offset.x);
@@ -101,14 +105,12 @@
                             e.y = e.detail.cevent.x + (whBoard.vcan.main.offset.y);
                             e.pageX = e.detail.cevent.x + (whBoard.vcan.main.offset.x);
                             e.pageY = e.detail.cevent.y + (whBoard.vcan.main.offset.y);
-                            
                             e.currX = e.detail.cevent.x;
                             e.currY = e.detail.cevent.y;
                         }
 
                         var foundTarget = vcan.events().findTarget(e),
                                 pointer = vcan.utility.getReltivePoint(e);
-
 
                         if (foundTarget && foundTarget.type == 'text' && whBoard.tool.cmd == 't_text') {
                             foundTarget.setupCurrentTransform(e);
@@ -124,22 +126,21 @@
 
                 mousemove: function(e) {
                      if (e.detail.hasOwnProperty('cevent')) {
-                        e.clientX = vcan.main.offset.x +  e.detail.cevent.x;
+                        e.clientX = vcan.main.offset.x + e.detail.cevent.x;
                         e.clientY = vcan.main.offset.y + e.detail.cevent.y;
                         e.x = vcan.main.offset.x + e.detail.cevent.x;
                         e.y = vcan.main.offset.y + e.detail.cevent.y;
                         e.pageX = vcan.main.offset.x + e.detail.cevent.x;
                         e.pageY = vcan.main.offset.y + e.detail.cevent.y;
-                        
                         e.currX = e.detail.cevent.x;
                         e.currY = e.detail.cevent.y;
                     }
 
                     // this condition is set because of performance reason
-                    // we don't want to execute below code when user is 
+                    // we don't want to execute below code when user is
                     // drawing the object
                     if (vcan.main.action == 'move') {
-                        var tempObj; //IMPORTANT this is the added during the UNIT TESTING, can be critical
+                        var tempObj;//IMPORTANT this is the added during the UNIT TESTING, can be critical
                         var obj = vcan.main;
                         if (!obj.currentTransform) {
                             var target = vcan.events().findTarget(e);
@@ -184,7 +185,6 @@
                                      * vcan.main.mode = 'drag'; 
                                      * */
 
-
                                     var tempTarget = vcan.extend({}, vcan.main.currentTransform.target);
 
                                     var currAdTime = new Date().getTime();
@@ -215,7 +215,7 @@
                                 }
                             }
 
-                            //push the object into replayObjs  
+                            //push the object into replayObjs
                             if (obj.currentTransform.action === 'scaleX' || obj.currentTransform.action === 'scaleY' ||
                                     (obj.currentTransform.action === 'rotate' && !obj.currentTransform.target.hasRotatingPoint)) {
                                 vcan.main.scaleMode = true;
@@ -241,7 +241,7 @@
                  */
                 mouseup: function(e) {
                     if (e.detail.hasOwnProperty('cevent')) {
-                        e.clientX = vcan.main.offset.x +  e.detail.cevent.x;
+                        e.clientX = vcan.main.offset.x + e.detail.cevent.x;
                         e.clientY = vcan.main.offset.y + e.detail.cevent.y;
                         e.x = vcan.main.offset.x + e.detail.cevent.x;
                         e.y = vcan.main.offset.y + e.detail.cevent.y;
@@ -250,7 +250,6 @@
                         e.currX = e.detail.cevent.x;
                         e.currY = e.detail.cevent.y;
                     }
-                    
                     lastmousemovetime = null;
                     if (vcan.main.action == 'move') {
                         vcan.activMouse.mousemove(e);
@@ -263,25 +262,24 @@
                             }
 
                             // determine the new coords everytime the image changes its position
-                            //after enabled this statement the drag, drop and rotate function have been smoothed 
+                            //after enabled this statement the drag, drop and rotate function have been smoothed.
                             var i = mainCan.children.length;
                             while (i--) {
                                 mainCan.children[i].setCoords(); //todo should think about this statment
                             }
                         }
 
-
                         //TODO this object should not be but null but empty
                         mainCan.currentTransform = null;
                         vcan.renderAll();
 
                         // every time(either the action in scale or drag mode) there would be checked that if the object is existing
-                        //  which have to be deleted duplicate object 
+                        //  which have to be deleted duplicate object
                         if (vcan.main.dragMode == true || vcan.main.scaleMode == true) {
                             var pointer = vcan.utility.actualPointer(e);
                             var currTime = new Date().getTime();
                             if (!e.detail.hasOwnProperty('cevent')) {
-                               vcan.calculatePackets(currTime, 'u', (e.clientX-vcan.main.offset.x), (e.clientY-vcan.main.offset.y));
+                               vcan.calculatePackets(currTime, 'u', (e.clientX - vcan.main.offset.x), (e.clientY - vcan.main.offset.y));
                             }
 
                             //if (vcan.main.dragMode == true) {
@@ -295,7 +293,7 @@
                             }
                         } else {
                             if (!e.detail.hasOwnProperty('cevent')) {
-                                vcan.calculatePackets(currTime, 'u', (e.clientX-vcan.main.offset.x), (e.clientY-vcan.main.offset.y));
+                                vcan.calculatePackets(currTime, 'u', (e.clientX - vcan.main.offset.x), (e.clientY - vcan.main.offset.y));
                             }
                         }
                         vcan.wb.sentPack = true;

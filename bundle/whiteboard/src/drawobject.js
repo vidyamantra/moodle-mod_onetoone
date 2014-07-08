@@ -1,3 +1,8 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
+
 (
     function(window) {
         var whBoard = window.whBoard;
@@ -17,7 +22,6 @@
             var endPosX;
             var endPosY;
             var dataChunk = [];
-
 
             /**
              * This function sets up the situation for draw the particular object
@@ -102,7 +106,7 @@
                     ev.currY = ev.detail.cevent.y;
                 }
                 if (tool.started && whBoard.tool.cmd != 't_clearall') { //command code inserted after found the problem
-                    //this function should be conveted into appended with freedrawing module 
+                    //this function should be conveted into appended with freedrawing module.
                     if (whBoard.obj.freeDrawObj != undefined && whBoard.obj.freeDrawObj.freesvg == true) {
                         if (whBoard.obj.freeDrawObj.fdObj.isCurrentlyDrawing) {
                             whBoard.obj.freeDrawObj.wb_draw(ev);
@@ -115,11 +119,9 @@
                                     }
                                 }
 
-
                                 var currTime = new Date().getTime();
                                 var obj = vcan.makeStackObj(currTime, 'm', ev.currX, ev.currY);
                                 dataChunk.push(obj);
-
 
                                 if (typeof mouseup == 'undefined') {
                                     presentmousemovetime = new Date().getTime();
@@ -176,7 +178,6 @@
                          *
                          ****/
 
-
                         whBoard.prvObj = rCurrObject.coreObj;
 
                     }
@@ -188,8 +189,6 @@
 
                 }
             };
-
-
 
             /**
              *  This function does finalize the object 

@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         var vcan = window.vcan;
@@ -168,11 +172,9 @@
                 object.setActive(true);
                 return object;
             },
-            
             /* TODO this funciton should be optimized in future
-                this function should be done properly 
+                this function should be done properly
                 this is not good way to talk	it woulld be greater if we can ignore this function */
-            
             updateObj: function(obj) {
                 var newObj = {};
                 for (prop in obj) {

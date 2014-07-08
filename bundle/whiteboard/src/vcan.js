@@ -1,10 +1,7 @@
-/**
- * This is the framework of Canvas named vcan
- * Created by suman at VidyaMantra Edusystem Pvt.Ltd,
- * This can be used to create white board
- * @copyright 2013-2014
- */
-
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window, document) {
         var io = window.io;
@@ -43,7 +40,6 @@
                     vcan.main.canvas = document.querySelector(canvid);
                     vcan.main.canid = canvid.substring(1, canvid.length);
                     vcan.main.currentTransform = "";
-    
 
                     /**
                      NOTE:- this can be critical 
@@ -121,11 +117,13 @@
                     if (!fnc || typeof (fnc) != 'function') {
                         return -1;
                     }
-                    if (!a || !a.length || a.length < 1)
+                    if (!a || !a.length || a.length < 1){
                         return -1;
+                    }
                     for (var i = 0; i < a.length; i++) {
-                        if (fnc(a[i]))
+                        if (fnc(a[i])){
                             return i;
+                        }
                     }
                     return -1;
                 },
@@ -178,7 +176,6 @@
                 }
         };
 
-
         /**
          * initializes the functions for displayed(rendered) object, 
          * here the displayed object means the object has been displayed into browsers 
@@ -195,7 +192,6 @@
             };
         }
 
-
         /**
          * Removes the passed object from canvas
          *  @param obj remvoe this object
@@ -210,7 +206,6 @@
             var rindex = vcan.ArrayIndexOf(vcan.main.children, function(pobj) {
                 return pobj.id == obj.id && (pobj.mt == obj.mt || obj.multiuser == true)
             });
-        
             if (rindex >= 0) {
                 vcan.main.children.splice(rindex, 1);
             }
@@ -224,8 +219,6 @@
 
             vcan.renderAll();
         }
-
-
 
         /**
          *  draws object, transform object, draws border on object
@@ -260,7 +253,6 @@
             ctx.restore();
 
         }
-
 
         /**
          * this function draws the object

@@ -1,3 +1,8 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
+
 (
     function(window) {
         var vcan = window.vcan;
@@ -19,8 +24,9 @@
 
                         // o = calcOffset(vcan.main.canvas.id)
                         o = vcan.main.offset;
-                if (t.target.lockRotation)
+                if (t.target.lockRotation){
                     return;
+                }
                 var lastAngle = Math.atan2(t.ey - t.y - o.y, t.ex - t.x - o.x),
                         curAngle = Math.atan2(y - t.y - o.y, x - t.x - o.x);
                 vcan.utility.setVal(t.target, 'theta', (curAngle - lastAngle) + t.theta);
@@ -37,8 +43,9 @@
                 var t = vcan.main.currentTransform,
                         offset = vcan.main.offset
                 target = t.target;
-                if (target.lockScalingX && target.lockScalingY)
+                if (target.lockScalingX && target.lockScalingY) {
                     return;
+                }
                 var lastLen = Math.sqrt(Math.pow(t.ey - t.y - offset.y, 2) + Math.pow(t.ex - t.x - offset.x, 2)),
                         curLen = Math.sqrt(Math.pow(y - t.y - offset.y, 2) + Math.pow(x - t.x - offset.x, 2));
 

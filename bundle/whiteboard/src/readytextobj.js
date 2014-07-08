@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         var whBoard = window.whBoard;
@@ -33,7 +37,6 @@
                     var obj = {};
                     this.textWriteMode++;
                     this.wmode = true;
-
 
                     if (vcan.main.currentTransform != undefined && vcan.main.currentTransform != '') {
                         this.currObject = vcan.main.currentTransform.target;
@@ -209,11 +212,8 @@
                         obj.uid = whBoard.uid;
                         vcan.main.replayObjs.push(obj);
                         localStorage.repObjs = JSON.stringify(vcan.main.replayObjs);
-                        
                         // io.send({'repObj': [obj]});
-                        
                         whBoard.utility.beforeSend({'repObj': [obj]});
-                        
                         whBoard.utility.updateSentPackets(obj);
                     }
 
@@ -223,14 +223,13 @@
 
                     var lastTxtObj = vcan.main.children[vcan.main.children.length - 1];
                     lastTxtObj.mt = currTime;
-                    //this.keyTyped = [];  
+                    //this.keyTyped = [];.
                     prvNode.parentNode.removeChild(txtWrapper);
                     vcan.renderAll();
                     if (whBoard.sentPackets > 0) {
                         if(document.getElementById(whBoard.sentPackDiv) != null){
                             document.getElementById(whBoard.sentPackDiv).innerHTML = whBoard.sentPackets;
                         }
-                        
                     }
                 }
             }

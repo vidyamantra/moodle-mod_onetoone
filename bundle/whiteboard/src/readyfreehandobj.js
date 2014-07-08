@@ -1,4 +1,7 @@
-(
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */(
     function(window) {
         var whBoard = window.whBoard;
 
@@ -55,13 +58,12 @@
                 },
                 finalizeDraw: function(ev) {
                     var vcan = whBoard.vcan;
-                    //TODO this(finalizeDrawingPath) should be called over the object 
+                    //TODO this(finalizeDrawingPath) should be called over the object.
                     //prvObj =  vcan.main.freeDraw.finalizeDrawingPath();
 
                     whBoard.prvObj = this.fdObj.finalizeDrawingPath(whBoard.canvas);
                     var lastChild = vcan.main.children[vcan.main.children.length - 1];
                     lastChild.mt = whBoard.utility.stringToNumber(whBoard.prvObj.path[whBoard.prvObj.path.length - 1][3]);
-
 
                     /**** 
                      *

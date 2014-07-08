@@ -1,3 +1,7 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
 (
     function(window) {
         var whBoard = window.whBoard;
@@ -12,11 +16,10 @@
          *  returns the object wrapped along with the properties  
          */
         whBoard.makeobj = function(startPosX, startPosY, endPosX, endPosY, objType) {
-            //TODO this should be deleted after check properly there is no use of obj.mp object 
+            //TODO this should be deleted after check properly there is no use of obj.mp object.
             var obj = {mp: {}};
             obj.mp.x = endPosX;
             obj.mp.y = endPosY;
-           
             if (startPosX > endPosX) {
                 //this is not using for oval
                 //TODO will have to look for other object that is it need or not
@@ -30,7 +33,6 @@
             } else {
                 obj.dRoad = 't2b';
             }
-            
             obj.type = objType;
 
             if (objType == 'rectangle' || objType == 'triangle') {

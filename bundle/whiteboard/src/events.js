@@ -1,3 +1,8 @@
+// This file is part of Vidyamantra - http:www.vidyamantra.com/
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author  Suman Bogati <http://www.vidyamantra.com>
+  */
+
 (
     function(window) {
         var vcan = window.vcan;
@@ -25,7 +30,7 @@
                     //TODO use this should be obj
 
                     var objs = vcan.main.children;
-                    for (var i = objs.length; i--; ) {
+                    for (var i = objs.length; i--;) {
                         if (objs[i] && vcan.virtual_box.containsPoint(e, objs[i])) {
                             target = objs[i];
                             break;

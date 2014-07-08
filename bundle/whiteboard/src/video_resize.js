@@ -1,6 +1,10 @@
+// This file is part of http://dyndiv.markusbordihn.de/example/moveable-resizeable/.
+/**@Copyright 2014  Vidyamantra Edusystems. Pvt.Ltd.
+ * @author(current)  Suman Bogati <http://www.vidyamantra.com>
+ * @author(previous)  http://dyndiv.markusbordihn.de/example/moveable-resizeable
+  */
 (
     function(window) {
-        //http://dyndiv.markusbordihn.de/example/moveable-resizeable/ 		
         var ByRei_dynDiv = {
             api: {
                 drag: null,
@@ -76,7 +80,7 @@
              divList Struction
              ================================================================================
              0.  Object:[Object]        - Movable Object
-             1.  Limiter:[Object]       - Object to which the dynDIV is limited 
+             1.  Limiter:[Object]       - Object to which the dynDIV is limited
              2.  Status:[Boolean]       - Active or Inactive
              3.  zIndex:[Number]        - Init. zIndex for the dynDIV
              4.  left:[Number]          - Init. Position left
@@ -94,7 +98,7 @@
              */
 
             /*
-             This include all get Methodes 
+             This include all get Methodes
              */
             get: {/* Warper for prefix request */
                 prefix: {
@@ -303,8 +307,8 @@
                     return result;
                 }
             },
-            /* 
-             This include all on(action) Methodes 
+            /*
+             This include all on(action) Methodes.
              */
             on: {/* Mouse Move Events */
                 move: function(evt) {
@@ -455,7 +459,7 @@
                 }
             },
             /*
-             This include all init functions 
+             This include all init functions.
              */
             init: {/* Init Events for all div with dynDiv_ as className */
                 main: function() {
@@ -639,7 +643,7 @@
                     return result;
                 }
             },
-            /* 
+            /*
              All set Functions
              */
             set: {/* Set visible / invisible */
@@ -667,8 +671,8 @@
                     ByRei_dynDiv._style(obj, 'height', value + "px");
                 }
             },
-            /* 
-             Resize DIV 
+            /*
+             Resize DIV.
              */
             resize: function() {
                 if (ByRei_dynDiv.cache.obj && ByRei_dynDiv.cache.modus) {
@@ -683,7 +687,7 @@
                             mouse_diff_left = (ByRei_dynDiv.cache.pos.left - ByRei_dynDiv.cache.init.pos.left || 0),
                             mouse_diff_top = (ByRei_dynDiv.cache.pos.top - ByRei_dynDiv.cache.init.pos.top || 0);
 
-                    // Try to keep Aspect Ratio 
+                    // Try to keep Aspect Ratio.
                     /* Maus so abfragen das Mouse nicht gr��ers als Offset von Object sein kann ! */
                     if (keepAspect) {
                         switch (ByRei_dynDiv.cache.modus) {
@@ -703,7 +707,7 @@
                         ByRei_dynDiv.cache.last.mouse.top = ByRei_dynDiv.cache.pos.top;
                     }
 
-                    // Scaling DIV depend on the Modus   
+                    // Scaling DIV depend on the Modus.
                     switch (ByRei_dynDiv.cache.modus) {
                         case "br":
                         case "tr":
@@ -810,8 +814,8 @@
                     }
                 }
             },
-            /* 
-             Move DIV 
+            /*
+             Move DIV.
              */
             move: function() {
                 if (ByRei_dynDiv.cache.obj) {
@@ -846,8 +850,8 @@
                     }
                 }
             },
-            /* 
-             Small DB System 
+            /*
+             Small DB System
              */
             db: function(i, value) { // db(1) return value / db(1,1) set value
                 var result = false;
@@ -865,8 +869,8 @@
                 }
                 return result;
             },
-            /* 
-             Add Object to dynDiv and add dynDiv Events and Effects 
+            /*
+             Add Object to dynDiv and add dynDiv Events and Effects.
              */
             add: function(elem, i, mode) {
                 if (elem) {
@@ -999,7 +1003,7 @@
                             }
                         }
 
-                        // Show Resize (active, focus, doubleclick) 
+                        // Show Resize (active, focus, doubleclick).
                         if (ByRei_dynDiv.get.prefix.value(classNames, "showResize-", 1)) {
                             showresize = ByRei_dynDiv.get.prefix.value(classNames, "showResize-", 1);
                             ByRei_dynDiv.on.resize(parent, false);
