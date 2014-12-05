@@ -34,8 +34,9 @@ require_once('auth.php');
  * eg: www.ourmoodle.com/mod/onetoone/bundle/whiteboard
  */
 
+
 echo "<script>
-        window.whiteboardPath =  'http://192.168.1.118/moodle27/mod/onetoone/bundle/whiteboard';
+        window.whiteboardPath =  '".$CFG->wwwroot."/mod/onetoone/bundle/whiteboard';
       </script>";
 
 $id = optional_param('id', 0, PARAM_INT); // Course_module ID, or
