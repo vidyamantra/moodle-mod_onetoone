@@ -23,7 +23,7 @@
  * @subpackage onetoone
  */
 
-$plugin->version   = 2014071100;  // Use minor version bumps until 2013 then use YYYYMMDDxx
+$plugin->version   = 201412500;  // Use minor version bumps until 2013 then use YYYYMMDDxx
 $plugin->requires  = 2013111800.00;  // Requires this Moodle version
 $plugin->release   = '1.0.2 (20140711)'; // User-friendly version number.
 $plugin->component = 'mod_onetoone';
